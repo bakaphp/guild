@@ -1,0 +1,43 @@
+{
+    "name": "kanvas/crm",
+    "description": "Kanvas App Content CRM Subsystem",
+    "keywords": [
+        "kanvas",
+        "Crm"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "kaioken",
+            "email": "max@mctekk.com"
+        },
+        {
+            "name": "arfenis",
+            "email": "arfen00@gmail.com"
+        }
+    ],
+    "type": "project",
+    "require": {
+        "php": ">= 7.4",
+        "ext-phalcon": ">=4",
+        "canvas/core": "^0.3",
+        "kanvas/content": "^0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kanvas\\Moderation\\": "src/",
+            "Kanvas\\Moderation\\Tests\\Support\\":"tests/_support"
+
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
