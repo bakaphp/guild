@@ -8,10 +8,10 @@ $dotenv->load();
 return [
     'paths' => [
         'migrations' => [
-            getenv('MODERATION_CORE_PATH') . '/storage/db/migrations',
+            getenv('CRM_CORE_PATH') . '/storage/db/migrations',
         ],
         'seeds' => [
-            getenv('MODERATION_CORE_PATH') . '/storage/db/seeds',
+            getenv('CRM_CORE_PATH') . '/storage/db/seeds',
         ],
     ],
     'environments' => [
@@ -19,19 +19,19 @@ return [
         'default_database' => 'development',
         'production' => [
             'adapter' => 'mysql',
-            'host' => getenv('MODERATION_MYSQL_HOST'),
-            'name' => getenv('MODERATION_MYSQL_NAME'),
-            'user' => getenv('MODERATION_MYSQL_USER'),
-            'pass' => getenv('MODERATION_MYSQL_PASS'),
+            'host' => getenv('CRM_MYSQL_HOST'),
+            'name' => getenv('CRM_MYSQL_NAME'),
+            'user' => getenv('CRM_MYSQL_USER'),
+            'pass' => getenv('CRM_MYSQL_PASS'),
             'port' => 3306,
             'charset' => 'utf8',
         ],
         'development' => [
             'adapter' => 'mysql',
-            'host' => getenv('MODERATION_MYSQL_HOST'),
-            'name' => getenv('MODERATION_MYSQL_NAME'),
-            'user' => getenv('MODERATION_MYSQL_USER'),
-            'pass' => getenv('MODERATION_MYSQL_PASS'),
+            'host' => getenv('CRM_MYSQL_HOST'),
+            'name' => getenv('CRM_MYSQL_NAME'),
+            'user' => getenv('CRM_MYSQL_USER'),
+            'pass' => getenv('CRM_MYSQL_PASS'),
             'port' => 3306,
             'charset' => 'utf8',
         ],
