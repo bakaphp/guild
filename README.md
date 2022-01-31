@@ -30,10 +30,13 @@ Receivers:
 - Assign rotations
 
 
-Add a new Lead
--------------------
+Methods
+==========
 
-Create a new lead
+Leads
+--------
+
+### Create a new lead
 
 ```php
 <?php
@@ -48,8 +51,8 @@ class Messages implements BaseModel
 }
 
 ```
-Create a new Lead Attempt
------------------
+### Create a new Lead Attempt
+
 ```php
 
 class Messages implements BaseModel
@@ -63,8 +66,7 @@ class Messages implements BaseModel
 ```
 
 
-Update Leads
--------------------
+### Update
 
 ```php
 
@@ -72,112 +74,96 @@ Update Leads
 $lead = Leads::updateById(3, $data)
 
 ```
+OR
 
-Get Leads
--------------------
+```php
+
+// Update the data from the model after the fetch
+$lead = Leads::getById(3)->update($data)
+
+```
+
+### Get Leads
+
 
 ```php
 
 //Get all the leads
 $leads = Leads::getAll();
 
+//Get Leads by id
+$leads = Leads::getById(4);
+
 //Get leads by status
 $leads = Leads::getByStatus(LeadStatus::LOSE);
 $leads = Leads::getByStatus(LeadStatus::WIN);
 
 //Get leads by Pipeline stage
-$leads = Leads::getByStageId(2);
+// @pipelineStage is a PipelineStage Object
+$leads = Leads::getByPipelineStage($pipelineStage);
 
 ```
 
-HASTA AQUI
+Organizations
+------------------
+
+### Create
+
 
 ```php
-//find message
-$message = Messages::findFirst(3);
-
-//get all comments
-$messageComment = Comments::getAll($message, $page = 1, $limit = 25);
+//Create a new organization by an array of data
+$organization = Organization::create($data);
 ```
 
-Get a Single Comments
--------------------
+### Update
 
 ```php
-
-//find message
-$message = Messages::findFirst(3);
-
-//get all the comments of the given entity
-$message->getCommentById($id);
+$organization = Organization::updateById(3, $data);
 ```
 
 OR
 
 ```php
-//find message
-$message = Messages::findFirst(3);
-
-//get one by id
-$messageComment = Comments::getById($message, $id);
-
-//like the comment
-$this->user->likes($messageComment);
+$organization = Organization::getById(3)->update($data);
 ```
 
-
-Delete Comment of a Entity
--------------------
+### Get
 
 ```php
+//Get Organization by its id
+$organization = Organization::getById(3);
 
-//find message
-$message = Messages::findFirst(3);
-
-//delete the comment and verify the user owns it
-$message->getCommentById($id)->delete($user);
+//Get All organization
+$organization = Organization::getAll();
 ```
 
-OR
+### Add Peoples to organization
 
 ```php
-//find message
-$message = Messages::findFirst(3);
+//Get the people and the organization
+$people = Peoples::getById(3);
+$organization = Organization::getById(3);
 
-//delete a comment from this message 
-$messageComment = Comments::delete($message, $commentId, $user);
+// Add a new people to an organization
+Organization::addPeople($organization, $people);
+```
+Or
+
+```php
+$organization = Organization::getById(3);
+$organization->addPeople($people);
 ```
 
-OR
+### Get Peoples from an Organization
 
 ```php
-//find message
-$message = Messages::findFirst(3);
-
-//delete a comment from this message 
-$messageComment = Comments::deleteAll($message);
+$organization = Organization::getById(3);
+$organization->getPeoples();
 ```
-
-Add a Reply to a Comment
--------------------
-
+Or
 ```php
-
-//find message
-$message = Messages::findFirst(3);
-
-//current logged in user , likes now this user
-$message->getComment($id)->reply($user, 'text');
-```
-
-OR
-
-```php
-//find message
-$message = Messages::findFirst(3);
-
-//add a comment to the message 
-$messageComment = Comments::getById($message, $id)->reply($user, 'text');
+$organization = Organization::getById(3);
+Organization::getPeoplesByOrganization($organization);
 ```
 
 # Controller
