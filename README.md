@@ -191,73 +191,56 @@ Or
 ```php
 $people = People::getById(1)->update($data);
 ```
-### Update
+### Create Contact
 ```php
-
+// @people People user data for the new contact
+// @contactType
+People::createNewContact($people, $contactType, $value);
 ```
 
 ### Update
 ```php
+$people = People::getById(2);
+// @people People user data for the new contact
+// @contactType
+People::updateContact($people, $data);
 
+```
+Or
+
+```php
+$people = People::getById(2)->update($data);
+```
+Deals
+-------------
+
+### Create
+```php
+$lead = Lead::getById(1);
+$newDeal = Deal::create($lead)
+```
+
+### Get by Lead
+```php
+$lead = Lead::getById(1);
+$deal = Deal::getByLead($lead);
+```
+
+### Get
+```php
+$deal = Deal::getById(2); 
 ```
 
 ### Update
 ```php
-
+Deal::update(Deal::getById(2), $data);
 ```
-# Controller
-
-Once you have a commentable entity you will need to expose it via a controller, allowing the application to create comments or replies for that given entity.
-
-The first thing you will need to do is 
-
+Update by object
 ```php
-<?php
-
-class RoomComments
-{
-    use CommentableController; //or CommentableRoute?
-
-    protected ModelInterface $commentParentEntity;
-    protected int|string $parentId;
-
-    /**
-     * Set the entity the comment will belong to
-     **/
-    public function setCommentEntity()
-    {
-        $this->parentId = (int) $this->router->getParams()['messageId'];
-        $this->commentParentEntity = Rooms::findFirst($this->parentId);
-
-        if (!$this->parentId) {
-            throw new RuntimeException('Not Found');
-        }
-}
-
+$deal = Deal::getById(2)->update($data);
 ```
-
-By adding the CommentableController you will have the following functions to use in your routes:
-
-List all comments for he given entity <br />
-`- getAll() `
-
-Example: <br />
-`- GET  /entity/{id}/comments `
-
-Add a comment to the entity <br />
-`- create()`
-
-Example: <br />
-`- POST /entity/{id}/comments`
-
-Add a reply to a comment <br />
-`- addReply(int $commentId)`
-
-Example: <br />
-`- POST /entity/{id}/comments/{id}`
-
-Get a specify Comment <br />
-`- getById(int $id)`
-
-Example: <br />
-`- GET /entity/{id}/comments/{id}`
+Update by Lead
+```php
+$lead = Lead::getById(1);
+Deal::getByLead($lead)->update($data);
+```
