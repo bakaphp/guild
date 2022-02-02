@@ -166,6 +166,45 @@ $organization = Organization::getById(3);
 Organization::getPeoplesByOrganization($organization);
 ```
 
+Peoples
+-------------
+
+### Create
+```php
+$people = [
+    'name' => 'Romeo',
+    'email' => 'Romeo@mail.com'
+];
+
+// $user is the user that create the people
+// @UserInterface $user
+// array $peopleData
+$people = People::create($user,$peopleData)
+```
+
+### Update
+```php
+$people = People::getById(1);
+People::update($people, $data)
+```
+Or
+```php
+$people = People::getById(1)->update($data);
+```
+### Update
+```php
+
+```
+
+### Update
+```php
+
+```
+
+### Update
+```php
+
+```
 # Controller
 
 Once you have a commentable entity you will need to expose it via a controller, allowing the application to create comments or replies for that given entity.
