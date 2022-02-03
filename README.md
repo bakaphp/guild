@@ -89,7 +89,9 @@ $lead = Leads::getById(3)->update($data)
 ```php
 
 //Get all the leads
-$leads = Leads::getAll();
+$page = 1;
+$limit = 10;
+$leads = Leads::getAll($page, $limit);
 
 //Get Leads by id
 $leads = Leads::getById(4);
@@ -134,7 +136,9 @@ $organization = Organization::getById(3)->update($data);
 $organization = Organization::getById(3);
 
 //Get All organization
-$organization = Organization::getAll();
+$page = 1;
+$limit = 10;
+$organization = Organization::getAll($page, $limit);
 ```
 
 ### Add Peoples to organization
@@ -229,6 +233,12 @@ $deal = Deal::getByLead($lead);
 ### Get
 ```php
 $deal = Deal::getById(2); 
+```
+Or
+```php
+$page = 1;
+$limit = 10;
+$deal = Deal::getAll($page, $limit);
 ```
 
 ### Update
