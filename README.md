@@ -254,3 +254,106 @@ Update by Lead
 $lead = Lead::getById(1);
 Deal::getByLead($lead)->update($data);
 ```
+
+Pipelines
+-----------
+
+### Create
+```php
+$pipelines = Pipelines::create($name, $entity);
+```
+
+### Get
+```php
+$page = 1;
+$limit = 10;
+$pipelines = Pipelines::getAll($page, $limit);
+```
+Or
+```php
+$pipeline = Pipelines::getById($name);
+```
+
+### Update
+```php
+$pipeline = Pipelines::getById(1);
+Pipelines::update($pipeline, $name);
+```
+
+### Create Stage
+```php
+// $pipeline Pipeline Object
+// $name string
+// $hasRotting boolean
+// $rottingDays int
+Pipelines::createStage($pipeline, $name, $hasRotting, $rottingDays);
+```
+
+### Get Stage
+```php
+$pipelineStage = Pipelines::getStageById(1);
+```
+Or
+```php
+$pipelineStage = Pipelines::getStagesByPipeline($pipeline);
+```
+Or
+```php
+$pipelineStage = Pipelines::getAllStages($page, $limit);
+```
+
+### Update Stage
+```php
+$pipelineStage = Pipelines::getStageById(1);
+Pipelines::updateStage($pipelineStage, $data)
+```
+Or
+```php
+$pipelineStage = Pipelines::getStageById(1)->update($data);
+```
+
+Rotations
+-----------
+
+### Create
+```php
+$pipelines = Rotations::create($name);
+```
+
+### Update
+```php
+$rotation = Rotations::getById(1);
+Rotations::update($rotation);
+```
+Or
+```php
+$rotation = Rotations::getById(1)->update($data);
+```
+### Get
+```php
+$rotation = Rotations::getById(1);
+
+$rotation = Rotation::getByName($name);
+```
+
+Rotations Agents
+-----------
+### Add
+```php
+Rotations::addAgents($rotation, $user, $percent, $hits);
+```
+
+### Get Agents
+```php
+Rotations::getAllAgents($rotation, $page, $limit);
+
+Rotations::getAgentsByUser($user);
+
+Rotation::getAgentById(2);
+```
+
+### Edit Agent
+```php
+$agent = Rotation::getAgentById(2);
+Rotations::editRotationAgent($agent, $data);
+```
