@@ -4,7 +4,7 @@ use Dotenv\Dotenv;
 
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
-printf(getenv('CRM_CORE_PATH') . '/storage/db/migrations');
+
 return [
     'paths' => [
         'migrations' => [

@@ -109,7 +109,6 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
             ])
             ->addColumn('reason_lost', 'text', [
                 'null' => true,
-                'default' => null,
                 'limit' => 65535,
                 'collation' => 'utf8mb4_unicode_520_nopad_ci',
                 'encoding' => 'utf8mb4',
@@ -125,7 +124,6 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
             ])
             ->addColumn('description', 'text', [
                 'null' => true,
-                'default' => null,
                 'limit' => MysqlAdapter::TEXT_LONG,
                 'collation' => 'utf8mb4_unicode_520_nopad_ci',
                 'encoding' => 'utf8mb4',
@@ -143,7 +141,6 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
             ])
             ->addColumn('updated_at', 'datetime', [
                 'null' => true,
-                'default' => null,
                 'after' => 'created_at',
             ])
             ->addColumn('is_deleted', 'integer', [
@@ -169,7 +166,6 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
             ])
             ->addColumn('companies_id', 'integer', [
                 'null' => true,
-                'default' => null,
                 'limit' => MysqlAdapter::INT_REGULAR,
                 'after' => 'id',
             ])
@@ -198,7 +194,6 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
             ])
             ->addColumn('updated_at', 'datetime', [
                 'null' => true,
-                'default' => null,
                 'after' => 'created_at',
             ])
             ->addColumn('is_deleted', 'integer', [
@@ -232,7 +227,6 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
             ])
             ->addColumn('companies_id', 'integer', [
                 'null' => true,
-                'default' => null,
                 'limit' => MysqlAdapter::INT_REGULAR,
                 'after' => 'uuid',
             ])
@@ -257,7 +251,6 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
             ])
             ->addColumn('address', 'text', [
                 'null' => true,
-                'default' => null,
                 'limit' => 65535,
                 'collation' => 'utf8mb4_unicode_520_nopad_ci',
                 'encoding' => 'utf8mb4',
@@ -269,7 +262,6 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
             ])
             ->addColumn('updated_at', 'datetime', [
                 'null' => true,
-                'default' => null,
                 'after' => 'created_at',
             ])
             ->addColumn('is_deleted', 'integer', [
@@ -295,7 +287,6 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
             ])
             ->addColumn('companies_id', 'integer', [
                 'null' => true,
-                'default' => null,
                 'limit' => MysqlAdapter::INT_REGULAR,
                 'after' => 'id',
             ])
@@ -327,7 +318,6 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
             ])
             ->addColumn('weight', 'integer', [
                 'null' => true,
-                'default' => null,
                 'limit' => MysqlAdapter::INT_SMALL,
                 'after' => 'slug',
             ])
@@ -337,7 +327,6 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
             ])
             ->addColumn('updated_at', 'datetime', [
                 'null' => true,
-                'default' => null,
                 'after' => 'created_at',
             ])
             ->addColumn('is_default', 'integer', [
@@ -376,7 +365,6 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
             ])
             ->addColumn('companies_id', 'integer', [
                 'null' => true,
-                'default' => null,
                 'limit' => MysqlAdapter::INT_REGULAR,
                 'after' => 'uuid',
             ])
@@ -398,7 +386,6 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
             ])
             ->addColumn('updated_at', 'datetime', [
                 'null' => true,
-                'default' => null,
                 'after' => 'created_at',
             ])
             ->addColumn('is_deleted', 'integer', [
@@ -491,7 +478,6 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
             ])
             ->addColumn('updated_at', 'datetime', [
                 'null' => true,
-                'default' => null,
                 'after' => 'created_at',
             ])
             ->addColumn('is_deleted', 'integer', [
