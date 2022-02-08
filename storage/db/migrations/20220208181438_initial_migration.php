@@ -6,8 +6,6 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
 {
     public function change()
     {
-        $this->execute("ALTER DATABASE CHARACTER SET 'utf8mb4';");
-        $this->execute("ALTER DATABASE COLLATE='utf8mb4_unicode_520_nopad_ci';");
         $this->table('leads', [
                 'id' => false,
                 'primary_key' => ['id'],
