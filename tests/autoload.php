@@ -14,9 +14,9 @@ if (!defined('ROOT_DIR')) {
 //load classes
 $loader = new Loader();
 $loader->registerNamespaces([
-    'Kanvas\Crm' => appPath('src/'),
-    'Kanvas\Crm\Test' => appPath('tests/'),
-    'Kanvas\Crm\Test\Support' => appPath('tests/_support'),
+    'Kanvas\CRM' => appPath('src/'),
+    'Kanvas\CRM\Test' => appPath('tests/'),
+    'Kanvas\CRM\Test\Support' => appPath('tests/_support'),
     'Baka\Database' => appPath('vendor/baka/baka/src/database'),
 ]);
 

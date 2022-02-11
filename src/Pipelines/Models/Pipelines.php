@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Kanvas\Crm;
+namespace Kanvas\CRM;
 
 class Pipelines
 {
