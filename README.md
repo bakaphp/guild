@@ -2,9 +2,9 @@
 sidebar_position: 4
 ---
 
-# CRM
+# Guild
 
-Bla bla bla bla bla
+Guild is a Customer relationship management package that allows the user to manage his leads and deals, similar to a guild that manages its members and their assignments, as well as the reports and plans related to them.
 
 ```
 bla bla definition bla bla bla
@@ -40,7 +40,7 @@ Leads
 
 ```php
 <?php
-use kanvas\Crm\Leads;
+use kanvas\Guild\Leads;
 
 class Messages implements BaseModel
 {
