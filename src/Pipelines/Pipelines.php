@@ -89,20 +89,4 @@ class Pipelines
 
         return $pipeline;
     }
-
-    // public static function findByRawSql(int $page = 1, int $limit = 10, $params = null)
-    // {
-    //     $page = ($page - 1) * $limit;
-    //     $sql = "SELECT 
-    //             e.*
-    //             FROM pipelines as w , notable_widgets_entities as e 
-    //                 WHERE  
-    //                     w.widget_uuid  = '$uuid'
-    //                     AND e.notable_widgets_id = w.id
-    //                     AND e.is_deleted = 0
-    //                 ORDER BY e.order
-    //                 LIMIT $page, $limit";
-
-    //     return ModelsPipelines::findByRawSql($sql);
-    // }
 }
