@@ -9,6 +9,8 @@ use Kanvas\Guild\BaseModel;
 
 class Users extends BaseModel implements UserInterface
 {
+    public int $companies_id = 1;
+
     public function getId() : int
     {
         return $this->id ?? 1;
