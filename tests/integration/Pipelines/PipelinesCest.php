@@ -8,6 +8,7 @@ use IntegrationTester;
 use Kanvas\Guild\Pipelines\Models\Pipelines as ModelsPipelines;
 use Kanvas\Guild\Pipelines\Pipelines;
 use Kanvas\Guild\Tests\Support\Models\Missions;
+use Kanvas\Guild\Tests\Support\Models\Users;
 
 class PipelinesCest
 {
@@ -23,7 +24,7 @@ class PipelinesCest
     {
         $name = "Thinking";
 
-        $pipeline = Pipelines::create($name, new Missions());
+        $pipeline = Pipelines::create($name, new Missions(), new Users());
 
         $this->pipeline = $pipeline;
 
@@ -38,7 +39,7 @@ class PipelinesCest
      */
     public function testGetAllPipelines(IntegrationTester $I) : void
     {
-        $pipelines = Pipelines::getAll();
+        $pipelines = Pipelines::getAll(new Users());
 
         $I->assertTrue(isset($pipelines[0]['id']));
     }
