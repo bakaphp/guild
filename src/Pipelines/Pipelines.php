@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Kanvas\Guild\Pipelines;
 
-use Baka\Contracts\Auth\UserInterface;
 use Kanvas\Guild\BaseModel;
+use Kanvas\Guild\Contracts\UserInterface;
 use Kanvas\Guild\Pipelines\Models\Pipelines as ModelsPipelines;
 use Phalcon\Di;
 use Phalcon\Utils\Slug;
@@ -19,13 +19,13 @@ class Pipelines
      * @param BaseModel $entity
      * @return ModelsPipelines
      */
-    public static function create(string $name, BaseModel $entity, UserInterface $user, int $companyId) : ModelsPipelines
+    public static function create(string $name, BaseModel $entity, UserInterface $user) : ModelsPipelines
     {
         $pipeline = new ModelsPipelines();
         $pipeline->entity_namespace = get_class($entity);
         $pipeline->name = $name;
         $pipeline->users_id = $user->getId();
-        $pipeline->companies_id = $companyId;
+        $pipeline->companies_id = $user->getCompanies();
         $pipeline->slug = Slug::generate($name);
         $pipeline->saveOrFail();
 
@@ -39,14 +39,14 @@ class Pipelines
      * @param integer $limit
      * @return array
      */
-    public static function getAll(int $companyId, $page = 1, $limit = 10) : array
+    public static function getAll(UserInterface $user, $page = 1, $limit = 10) : array
     {
         $offset = ($page - 1) * $limit;
 
         $pipelines = ModelsPipelines::find([
             'conditions' => 'companies_id = :company_id: AND is_deleted = 0',
             'bind' => [
-                'company_id' => $companyId
+                'company_id' => $user->getCompanies()
             ],
             'limit' => $limit,
             'offset' => $offset
