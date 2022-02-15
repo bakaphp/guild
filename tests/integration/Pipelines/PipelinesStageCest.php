@@ -8,7 +8,6 @@ use IntegrationTester;
 use Kanvas\Guild\Pipelines\Models\Pipelines as ModelsPipelines;
 use Kanvas\Guild\Pipelines\Models\PipelinesStages;
 use Kanvas\Guild\Pipelines\Pipelines;
-use Kanvas\Guild\Tests\Support\Models\Missions;
 use Kanvas\Guild\Tests\Support\Models\Users;
 
 class PipelinesStageCest
@@ -40,34 +39,30 @@ class PipelinesStageCest
     }
 
     /**
-     * Get all pipelines
+     * Get pipeline stage by id
      *
      * @param IntegrationTester $I
      * @return void
      */
-    public function testGetAllPipelines(IntegrationTester $I) : void
+    public function testGetStageById(IntegrationTester $I) : void
     {
-        $pipelines = Pipelines::getAll(new Users());
-
-        $I->assertTrue(isset($pipelines[0]['id']));
+        $pipelineStage = Pipelines::getStageById($this->pipelineStage->getId());
+        
+        $I->assertEquals($pipelineStage->getId(), $this->pipelineStage->getId());
     }
 
     /**
-     * Test get pipelines stages
+     * Test get pipelines stages by pipeline
      *
      * @param IntegrationTester $I
      * @return void
      */
-    public function testGetPipelineStage(IntegrationTester $I) : void
+    public function testGetPipelineStageByPipeline(IntegrationTester $I) : void
     {
-        $pipelineStages = Pipelines::getStagesByPipeline($this->pipeline, new Users());
+        $pipelineStages = Pipelines::getStagesByPipeline($this->pipeline);
 
         $I->assertTrue(isset($pipelineStages[0]['id']));
-
-        $pipelinesStages = Pipelines::getAllStages(new Users(), 1);
-        $I->assertTrue(isset($pipelinesStages[0]['id']));
     }
-
 
     /**
      * Get Pipeline stage by id
@@ -89,7 +84,7 @@ class PipelinesStageCest
      * @param IntegrationTester $I
      * @return void
      */
-    public function testUpdatePipeline(IntegrationTester $I) : void
+    public function testUpdatePipelineStage(IntegrationTester $I) : void
     {
         $data = [
             'has_rotting_days' => false,
