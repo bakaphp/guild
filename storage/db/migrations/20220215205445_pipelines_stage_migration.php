@@ -34,19 +34,16 @@ class PipelinesStageMigration extends Phinx\Migration\AbstractMigration
             ])
             ->addColumn('has_rotting_days', 'integer', [
                 'null' => true,
-                'default' => null,
                 'limit' => MysqlAdapter::INT_TINY,
                 'after' => 'name',
             ])
             ->addColumn('rotting_days', 'integer', [
                 'null' => true,
-                'default' => null,
                 'limit' => MysqlAdapter::INT_TINY,
                 'after' => 'has_rotting_days',
             ])
             ->addColumn('weight', 'integer', [
                 'null' => true,
-                'default' => null,
                 'limit' => MysqlAdapter::INT_SMALL,
                 'after' => 'rotting_days',
             ])
