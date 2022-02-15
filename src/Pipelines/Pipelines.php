@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Kanvas\Guild\Pipelines;
 
+use Baka\Contracts\Auth\UserInterface;
 use Kanvas\Guild\BaseModel;
 use Kanvas\Guild\Pipelines\Models\Pipelines as ModelsPipelines;
 use Phalcon\Di;
@@ -18,13 +19,13 @@ class Pipelines
      * @param BaseModel $entity
      * @return ModelsPipelines
      */
-    public static function create(string $name, BaseModel $entity) : ModelsPipelines
+    public static function create(string $name, BaseModel $entity, UserInterface $user, int $companyId) : ModelsPipelines
     {
         $pipeline = new ModelsPipelines();
         $pipeline->entity_namespace = get_class($entity);
         $pipeline->name = $name;
-        $pipeline->users_id = Di::getDefault()->get('userData')->getId();
-        $pipeline->companies_id = Di::getDefault()->get('userData')->companies_id;
+        $pipeline->users_id = $user->getId();
+        $pipeline->companies_id = $companyId;
         $pipeline->slug = Slug::generate($name);
         $pipeline->saveOrFail();
 
@@ -38,14 +39,14 @@ class Pipelines
      * @param integer $limit
      * @return array
      */
-    public static function getAll($page = 1, $limit = 10) : array
+    public static function getAll(int $companyId, $page = 1, $limit = 10) : array
     {
         $offset = ($page - 1) * $limit;
 
         $pipelines = ModelsPipelines::find([
             'conditions' => 'companies_id = :company_id: AND is_deleted = 0',
             'bind' => [
-                'company_id' => Di::getDefault()->get('userData')->companies_id
+                'company_id' => $companyId
             ],
             'limit' => $limit,
             'offset' => $offset
