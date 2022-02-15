@@ -297,10 +297,6 @@ Or
 ```php
 $pipelineStage = Pipelines::getStagesByPipeline($pipeline);
 ```
-Or
-```php
-$pipelineStage = Pipelines::getAllStages($page, $limit);
-```
 
 ### Update Stage
 ```php
