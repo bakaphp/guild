@@ -52,7 +52,7 @@ class PipelinesCest
      */
     public function testGetPipelineById(IntegrationTester $I) : void
     {
-        $pipeline = Pipelines::getById($this->pipeline->getId());
+        $pipeline = Pipelines::getById($this->pipeline->getId(), new Users());
 
         $I->assertEquals($pipeline->getId(), $this->pipeline->getId());
     }

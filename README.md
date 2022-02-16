@@ -260,14 +260,14 @@ Pipelines
 
 ### Create
 ```php
-$pipelines = Pipelines::create($name, $entity);
+$pipelines = Pipelines::create($name, $entity, $user);
 ```
 
 ### Get
 ```php
 $page = 1;
 $limit = 10;
-$pipelines = Pipelines::getAll($page, $limit);
+$pipelines = Pipelines::getAll($user, $page, $limit);
 ```
 Or
 ```php
@@ -296,10 +296,6 @@ $pipelineStage = Pipelines::getStageById(1);
 Or
 ```php
 $pipelineStage = Pipelines::getStagesByPipeline($pipeline);
-```
-Or
-```php
-$pipelineStage = Pipelines::getAllStages($page, $limit);
 ```
 
 ### Update Stage

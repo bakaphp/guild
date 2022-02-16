@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Kanvas\Guild\Contracts;
 
-interface UserInterface
+use Baka\Contracts\Auth\UserInterface as AuthUserInterface;
+
+interface UserInterface extends AuthUserInterface
 {
-    public function getId();
     public function getCompanies();
 }
