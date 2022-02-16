@@ -6,7 +6,7 @@ namespace Kanvas\Guild\Pipelines\Models;
 
 use Kanvas\Guild\BaseModel;
 
-class PipelinesStages extends BaseModel
+class Stages extends BaseModel
 {
     public string $name;
     public int $pipelines_id;

@@ -7,7 +7,7 @@ namespace Kanvas\Guild\Pipelines;
 use Kanvas\Guild\BaseModel;
 use Kanvas\Guild\Contracts\UserInterface;
 use Kanvas\Guild\Pipelines\Models\Pipelines as ModelsPipelines;
-use Kanvas\Guild\Pipelines\Models\PipelinesStages;
+use Kanvas\Guild\Pipelines\Models\Stages;
 use Phalcon\Utils\Slug;
 
 class Pipelines
@@ -98,11 +98,11 @@ class Pipelines
      * @param string $name
      * @param boolean $hasRotting
      * @param integer $rottingDays
-     * @return PipelinesStages
+     * @return Stages
      */
-    public static function createStage(ModelsPipelines $pipeline, string $name, bool $hasRotting = false, int $rottingDays = 0) : PipelinesStages
+    public static function createStage(ModelsPipelines $pipeline, string $name, bool $hasRotting = false, int $rottingDays = 0) : Stages
     {
-        $pipelineStage = new PipelinesStages();
+        $pipelineStage = new Stages();
         $pipelineStage->name = $name;
         $pipelineStage->pipelines_id = $pipeline->getId();
         $pipelineStage->has_rotting_days = $hasRotting;
@@ -115,11 +115,11 @@ class Pipelines
     /**
      * Update a pipeline stage
      *
-     * @param PipelinesStages $stage
+     * @param Stages $stage
      * @param array $data
-     * @return PipelinesStages
+     * @return Stages
      */
-    public static function updateStage(PipelinesStages $stage, array $data) : PipelinesStages
+    public static function updateStage(Stages $stage, array $data) : Stages
     {
         $updateFields = [
             'name',
@@ -140,11 +140,11 @@ class Pipelines
      *
      * @param UserInterface $user
      * @param integer $id
-     * @return PipelinesStages
+     * @return Stages
      */
-    public static function getStageById(int $id) : PipelinesStages
+    public static function getStageById(int $id) : Stages
     {
-        return PipelinesStages::findFirstOrFail(
+        return Stages::findFirstOrFail(
             [
                 'conditions' => 'id = :id: AND is_deleted = 0',
                 'bind' => [
@@ -167,7 +167,7 @@ class Pipelines
     {
         $offset = ($page - 1) * $limit;
 
-        $pipelines = PipelinesStages::find([
+        $pipelines = Stages::find([
             'conditions' => 'pipelines_id = :pipelines_id: AND is_deleted = 0',
             'bind' => [
                 'pipelines_id' => $pipeline->getId()

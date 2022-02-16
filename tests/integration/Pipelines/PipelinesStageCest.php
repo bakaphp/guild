@@ -6,14 +6,13 @@ namespace Kanvas\Guild\Tests\Integration\Pipelines;
 
 use IntegrationTester;
 use Kanvas\Guild\Pipelines\Models\Pipelines as ModelsPipelines;
-use Kanvas\Guild\Pipelines\Models\PipelinesStages;
+use Kanvas\Guild\Pipelines\Models\Stages;
 use Kanvas\Guild\Pipelines\Pipelines;
-use Kanvas\Guild\Tests\Support\Models\Users;
 
 class PipelinesStageCest
 {
     public ModelsPipelines $pipeline;
-    public PipelinesStages $pipelineStage;
+    public Stages $pipelineStage;
 
     /**
      * Test create a new pipeline
