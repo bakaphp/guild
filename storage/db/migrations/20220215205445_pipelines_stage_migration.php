@@ -66,6 +66,13 @@ class PipelinesStageMigration extends Phinx\Migration\AbstractMigration
                 'name' => 'FK_pipelines_stages_pipeline',
                 'unique' => false,
             ])
+            ->addForeignKey(
+                'pipelines_id',
+                'pipelines',
+                'id',
+                ['constraint' => 'FK_pipelines_stages_pipeline'],
+                ['delete' => 'SET_NULL', 'update' => 'NO_ACTION']
+            )
             ->create();
     }
 }
