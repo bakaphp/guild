@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Kanvas\Guild\Pipelines;
 
-use Kanvas\Guild\BaseModel;
+use Baka\Contracts\Database\ModelInterface;
 use Kanvas\Guild\Contracts\UserInterface;
 use Kanvas\Guild\Pipelines\Models\Pipelines as ModelsPipelines;
 use Kanvas\Guild\Pipelines\Models\Stages;
@@ -16,10 +16,10 @@ class Pipelines
      * Create a new pipeline based on name and entity
      *
      * @param string $name
-     * @param BaseModel $entity
+     * @param ModelInterface $entity
      * @return ModelsPipelines
      */
-    public static function create(string $name, BaseModel $entity, UserInterface $user) : ModelsPipelines
+    public static function create(string $name, ModelInterface $entity, UserInterface $user) : ModelsPipelines
     {
         $pipeline = new ModelsPipelines();
         $pipeline->entity_namespace = get_class($entity);
