@@ -58,7 +58,7 @@ class PipelinesStageCest
      */
     public function testGetPipelineStageByPipeline(IntegrationTester $I) : void
     {
-        $pipelineStages = Pipelines::getStagesByPipeline($this->pipeline);
+        $pipelineStages = Pipelines::getStagesByPipeline($this->pipeline)->toArray();
 
         $I->assertTrue(isset($pipelineStages[0]['id']));
     }

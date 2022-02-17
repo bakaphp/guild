@@ -8,5 +8,5 @@ use Baka\Contracts\Auth\UserInterface as AuthUserInterface;
 
 interface UserInterface extends AuthUserInterface
 {
-    public function getCompanies();
+    public function getCompaniesId();
 }

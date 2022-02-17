@@ -39,7 +39,7 @@ class PipelinesCest
      */
     public function testGetAllPipelines(IntegrationTester $I) : void
     {
-        $pipelines = Pipelines::getAll(new Users());
+        $pipelines = Pipelines::getAll(new Users())->toArray();
 
         $I->assertTrue(isset($pipelines[0]['id']));
     }
