@@ -14,7 +14,7 @@ class Users extends BaseModel implements UserInterface
         return $this->id ?? 1;
     }
 
-    public function getCompaniesId() : int
+    public function currentCompanyId() : int
     {
         return 1;
     }

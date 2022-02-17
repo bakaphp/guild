@@ -26,7 +26,7 @@ class Pipelines
         $pipeline->entity_namespace = get_class($entity);
         $pipeline->name = $name;
         $pipeline->users_id = $user->getId();
-        $pipeline->companies_id = $user->getCompaniesId();
+        $pipeline->companies_id = $user->currentCompanyId();
         $pipeline->slug = Slug::generate($name);
         $pipeline->saveOrFail();
 
@@ -47,7 +47,7 @@ class Pipelines
         $pipelines = ModelsPipelines::find([
             'conditions' => 'companies_id = :company_id: AND is_deleted = 0',
             'bind' => [
-                'company_id' => $user->getCompaniesId()
+                'company_id' => $user->currentCompanyId()
             ],
             'limit' => $limit,
             'offset' => $offset
@@ -70,7 +70,7 @@ class Pipelines
                 'conditions' => 'id = :id: AND companies_id = :companies_id: AND is_deleted = 0',
                 'bind' => [
                     'id' => $id,
-                    'companies_id' => $user->getCompaniesId(),
+                    'companies_id' => $user->currentCompanyId(),
                 ]
             ]
         );
