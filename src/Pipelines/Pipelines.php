@@ -8,6 +8,7 @@ use Baka\Contracts\Database\ModelInterface;
 use Kanvas\Guild\Contracts\UserInterface;
 use Kanvas\Guild\Pipelines\Models\Pipelines as ModelsPipelines;
 use Kanvas\Guild\Pipelines\Models\Stages;
+use Phalcon\Mvc\Model\ResultsetInterface;
 use Phalcon\Utils\Slug;
 
 class Pipelines
@@ -25,7 +26,7 @@ class Pipelines
         $pipeline->entity_namespace = get_class($entity);
         $pipeline->name = $name;
         $pipeline->users_id = $user->getId();
-        $pipeline->companies_id = $user->getCompanies();
+        $pipeline->companies_id = $user->currentCompanyId();
         $pipeline->slug = Slug::generate($name);
         $pipeline->saveOrFail();
 
@@ -37,22 +38,22 @@ class Pipelines
      *
      * @param integer $page
      * @param integer $limit
-     * @return array
+     * @return ResultsetInterface
      */
-    public static function getAll(UserInterface $user, $page = 1, $limit = 10) : array
+    public static function getAll(UserInterface $user, $page = 1, $limit = 10) : ResultsetInterface
     {
         $offset = ($page - 1) * $limit;
 
         $pipelines = ModelsPipelines::find([
             'conditions' => 'companies_id = :company_id: AND is_deleted = 0',
             'bind' => [
-                'company_id' => $user->getCompanies()
+                'company_id' => $user->currentCompanyId()
             ],
             'limit' => $limit,
             'offset' => $offset
         ]);
 
-        return $pipelines->toArray();
+        return $pipelines;
     }
 
 
@@ -69,7 +70,7 @@ class Pipelines
                 'conditions' => 'id = :id: AND companies_id = :companies_id: AND is_deleted = 0',
                 'bind' => [
                     'id' => $id,
-                    'companies_id' => $user->getCompanies(),
+                    'companies_id' => $user->currentCompanyId(),
                 ]
             ]
         );
@@ -161,9 +162,9 @@ class Pipelines
      * @param ModelsPipelines $pipeline
      * @param integer $page
      * @param integer $limit
-     * @return array
+     * @return ResultsetInterface
      */
-    public static function getStagesByPipeline(ModelsPipelines $pipeline, int $page = 1, int $limit = 10) : array
+    public static function getStagesByPipeline(ModelsPipelines $pipeline, int $page = 1, int $limit = 10) : ResultsetInterface
     {
         $offset = ($page - 1) * $limit;
 
@@ -176,6 +177,6 @@ class Pipelines
             'offset' => $offset
         ]);
 
-        return $pipelines->toArray();
+        return $pipelines;
     }
 }
