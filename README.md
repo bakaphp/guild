@@ -313,13 +313,13 @@ Rotations
 
 ### Create
 ```php
-$pipelines = Rotations::create($name);
+$pipelines = Rotations::create($name, $user);
 ```
 
 ### Update
 ```php
 $rotation = Rotations::getById(1);
-Rotations::update($rotation);
+Rotations::update($rotation, $name);
 ```
 Or
 ```php
@@ -327,9 +327,9 @@ $rotation = Rotations::getById(1)->update($data);
 ```
 ### Get
 ```php
-$rotation = Rotations::getById(1);
+$rotation = Rotations::getById(1, $user);
 
-$rotation = Rotation::getByName($name);
+$rotation = Rotation::getByName($name, $user);
 ```
 
 Rotations Agents

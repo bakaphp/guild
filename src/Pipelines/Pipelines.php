@@ -87,6 +87,7 @@ class Pipelines
     public static function update(ModelsPipelines $pipeline, string $name) : ModelsPipelines
     {
         $pipeline->name = $name;
+        $pipeline->slug = Slug::generate($name);
         $pipeline->saveOrFail();
 
         return $pipeline;
