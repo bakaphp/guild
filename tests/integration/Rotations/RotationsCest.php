@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Kanvas\Guild\Tests\Integration\Pipelines;
+namespace Kanvas\Guild\Tests\Integration\Rotations;
 
 use IntegrationTester;
 use Kanvas\Guild\Rotations\Models\Rotations as ModelsRotations;
@@ -31,7 +31,7 @@ class RotationsCest
     }
 
     /**
-     * Get all pipelines
+     * Get all rotations
      *
      * @param IntegrationTester $I
      * @return void
