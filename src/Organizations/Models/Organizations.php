@@ -9,7 +9,7 @@ use Kanvas\Guild\BaseModel;
 
 class Organizations extends BaseModel
 {
-    public ?string $uuid = null;
+    public string $uuid;
     public int $companies_id;
     public int $users_id;
     public string $name;
