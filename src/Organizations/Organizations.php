@@ -35,7 +35,6 @@ class Organizations
     {
         $createFields = [
             'name',
-            'slug',
             'address',
             'users_id',
             'companies_id'
@@ -43,7 +42,6 @@ class Organizations
 
         $data['users_id'] = $user->getId();
         $data['companies_id'] = $user->currentCompanyId();
-        $data['slug'] = Slug::generate($data['name']);
         $organization = new ModelsOrganizations();
         $organization->saveOrFail($data, $createFields);
 
@@ -84,7 +82,6 @@ class Organizations
             'address'
         ];
 
-        $data['slug'] = Slug::generate($data['name']);
         $organization->saveOrFail($data, $updateFields);
 
         return $organization;

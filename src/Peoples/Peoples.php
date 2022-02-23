@@ -80,7 +80,6 @@ class Peoples
             'name',
         ];
 
-        $data['slug'] = Slug::generate($data['name']);
         $organization->saveOrFail($data, $updateFields);
 
         return $organization;

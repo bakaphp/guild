@@ -40,7 +40,6 @@ class Pipelines
         $pipeline->name = $name;
         $pipeline->users_id = $user->getId();
         $pipeline->companies_id = $user->currentCompanyId();
-        $pipeline->slug = Slug::generate($name);
         $pipeline->saveOrFail();
 
         return $pipeline;
@@ -56,7 +55,6 @@ class Pipelines
     public static function update(ModelsPipelines $pipeline, string $name) : ModelsPipelines
     {
         $pipeline->name = $name;
-        $pipeline->slug = Slug::generate($name);
         $pipeline->saveOrFail();
 
         return $pipeline;

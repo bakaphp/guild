@@ -9,7 +9,6 @@ use Kanvas\Guild\Contracts\UserInterface;
 use Kanvas\Guild\Pipelines\Models\Pipelines as ModelsPipelines;
 use Kanvas\Guild\Rotations\Models\Rotations as ModelsRotations;
 use Kanvas\Guild\Traits\Searchable as SearchableTrait;
-use Phalcon\Utils\Slug;
 
 class Rotations
 {
@@ -38,7 +37,6 @@ class Rotations
         $rotation->name = $name;
         $rotation->users_id = $user->getId();
         $rotation->companies_id = $user->currentCompanyId();
-        $rotation->slug = Slug::generate($name);
         $rotation->saveOrFail();
 
         return $rotation;
@@ -74,7 +72,6 @@ class Rotations
     public static function update(ModelsRotations $rotation, string $name) : ModelsRotations
     {
         $rotation->name = $name;
-        $rotation->slug = Slug::generate($name);
         $rotation->saveOrFail();
 
         return $rotation;
