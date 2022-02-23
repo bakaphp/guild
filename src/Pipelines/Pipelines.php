@@ -8,11 +8,14 @@ use Baka\Contracts\Database\ModelInterface;
 use Kanvas\Guild\Contracts\UserInterface;
 use Kanvas\Guild\Pipelines\Models\Pipelines as ModelsPipelines;
 use Kanvas\Guild\Pipelines\Models\Stages;
+use Kanvas\Guild\Traits\Crudable as CrudableTrait;
 use Phalcon\Mvc\Model\ResultsetInterface;
 use Phalcon\Utils\Slug;
 
 class Pipelines
 {
+    use CrudableTrait;
+
     /**
      * Create a new pipeline based on name and entity
      *
@@ -42,20 +45,8 @@ class Pipelines
      */
     public static function getAll(UserInterface $user, int $page = 1, int $limit = 10) : ResultsetInterface
     {
-        $offset = ($page - 1) * $limit;
-
-        $pipelines = ModelsPipelines::find([
-            'conditions' => 'companies_id = :company_id: AND is_deleted = 0',
-            'bind' => [
-                'company_id' => $user->currentCompanyId()
-            ],
-            'limit' => $limit,
-            'offset' => $offset
-        ]);
-
-        return $pipelines;
+        return self::getAllData(new ModelsPipelines(), $user, $page, $limit);
     }
-
 
     /**
      * Get a pipeline by its id
