@@ -40,7 +40,7 @@ class Pipelines
      * @param integer $limit
      * @return ResultsetInterface
      */
-    public static function getAll(UserInterface $user, $page = 1, $limit = 10) : ResultsetInterface
+    public static function getAll(UserInterface $user, int $page = 1, int $limit = 10) : ResultsetInterface
     {
         $offset = ($page - 1) * $limit;
 
