@@ -8,13 +8,23 @@ use Baka\Contracts\Database\ModelInterface;
 use Kanvas\Guild\Contracts\UserInterface;
 use Kanvas\Guild\Pipelines\Models\Pipelines as ModelsPipelines;
 use Kanvas\Guild\Pipelines\Models\Stages;
-use Kanvas\Guild\Traits\Crudable as CrudableTrait;
+use Kanvas\Guild\Traits\Searchable as SearchableTrait;
 use Phalcon\Mvc\Model\ResultsetInterface;
 use Phalcon\Utils\Slug;
 
 class Pipelines
 {
-    use CrudableTrait;
+    use SearchableTrait;
+
+    /**
+     * Set Model for traits.
+     *
+     * @return ModelInterface
+     */
+    public static function getModel() : ModelInterface
+    {
+        return new ModelsPipelines();
+    }
 
     /**
      * Create a new pipeline based on name and entity
@@ -35,38 +45,6 @@ class Pipelines
 
         return $pipeline;
     }
-
-    /**
-     * Get all pipelines associated to a company
-     *
-     * @param integer $page
-     * @param integer $limit
-     * @return ResultsetInterface
-     */
-    public static function getAll(UserInterface $user, int $page = 1, int $limit = 10) : ResultsetInterface
-    {
-        return self::getAllData(new ModelsPipelines(), $user, $page, $limit);
-    }
-
-    /**
-     * Get a pipeline by its id
-     *
-     * @param integer $id
-     * @return ModelsPipelines
-     */
-    public static function getById(int $id, UserInterface $user) : ModelsPipelines
-    {
-        return ModelsPipelines::findFirstOrFail(
-            [
-                'conditions' => 'id = :id: AND companies_id = :companies_id: AND is_deleted = 0',
-                'bind' => [
-                    'id' => $id,
-                    'companies_id' => $user->currentCompanyId(),
-                ]
-            ]
-        );
-    }
-
 
     /**
      * Update pipeline
