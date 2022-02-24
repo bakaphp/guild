@@ -4,13 +4,26 @@ declare(strict_types=1);
 
 namespace Kanvas\Guild\Organizations;
 
+use Baka\Contracts\Database\ModelInterface;
 use Kanvas\Guild\Contracts\UserInterface;
 use Kanvas\Guild\Organizations\Models\Organizations as ModelsOrganizations;
-use Phalcon\Mvc\Model\ResultsetInterface;
+use Kanvas\Guild\Traits\Searchable as SearchableTrait;
 use Phalcon\Utils\Slug;
 
 class Organizations
 {
+    use SearchableTrait;
+
+    /**
+     * Set Model for traits.
+     *
+     * @return ModelInterface
+     */
+    public static function getModel() : ModelInterface
+    {
+        return new ModelsOrganizations();
+    }
+
     /**
      * Create a new organization
      *
@@ -35,48 +48,6 @@ class Organizations
         $organization->saveOrFail($data, $createFields);
 
         return $organization;
-    }
-
-    /**
-     * Get all organizations associated to a company
-     *
-     * @param integer $page
-     * @param integer $limit
-     * @return ResultsetInterface
-     */
-    public static function getAll(UserInterface $user, int $page = 1, int $limit = 10) : ResultsetInterface
-    {
-        $offset = ($page - 1) * $limit;
-
-        $organizations = ModelsOrganizations::find([
-            'conditions' => 'companies_id = :company_id: AND is_deleted = 0',
-            'bind' => [
-                'company_id' => $user->currentCompanyId()
-            ],
-            'limit' => $limit,
-            'offset' => $offset
-        ]);
-
-        return $organizations;
-    }
-
-    /**
-     * Get a organization by its id
-     *
-     * @param integer $id
-     * @return ModelsOrganizations
-     */
-    public static function getById(int $id, UserInterface $user) : ModelsOrganizations
-    {
-        return ModelsOrganizations::findFirstOrFail(
-            [
-                'conditions' => 'id = :id: AND companies_id = :companies_id: AND is_deleted = 0',
-                'bind' => [
-                    'id' => $id,
-                    'companies_id' => $user->currentCompanyId(),
-                ]
-            ]
-        );
     }
 
     /**
