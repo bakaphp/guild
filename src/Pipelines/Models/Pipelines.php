@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Kanvas\Guild\Pipelines\Models;
 
 use Kanvas\Guild\BaseModel;
+use Phalcon\Utils\Slug;
 
 class Pipelines extends BaseModel
 {
@@ -18,5 +19,26 @@ class Pipelines extends BaseModel
     {
         parent::initialize();
         $this->setSource('pipelines');
+    }
+
+        /**
+     * Before create
+     *
+     * @return void
+     */
+    public function beforeCreate() : void
+    {
+        $this->slug = Slug::generate($this->name);
+        parent::beforeCreate();
+    }
+
+    /**
+     * Before save
+     *
+     * @return void
+     */
+    public function beforeSave() : void
+    {
+        $this->slug = Slug::generate($this->name);
     }
 }

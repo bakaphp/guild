@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Kanvas\Guild\Organizations;
+namespace Kanvas\Guild\Peoples;
 
 use Baka\Contracts\Database\ModelInterface;
 use Kanvas\Guild\Contracts\UserInterface;
-use Kanvas\Guild\Organizations\Models\Organizations as ModelsOrganizations;
+use Kanvas\Guild\Peoples\Models\Peoples as ModelsPeoples;
 use Kanvas\Guild\Traits\Searchable as SearchableTrait;
 use Phalcon\Utils\Slug;
 
-class Organizations
+class Peoples
 {
     use SearchableTrait;
 
@@ -21,7 +21,7 @@ class Organizations
      */
     public static function getModel() : ModelInterface
     {
-        return new ModelsOrganizations();
+        return new ModelsPeoples();
     }
 
     /**
@@ -29,20 +29,19 @@ class Organizations
      *
      * @param array $data
      * @param UserInterface $user
-     * @return ModelsOrganizations
+     * @return ModelsPeoples
      */
-    public static function create(array $data, UserInterface $user) : ModelsOrganizations
+    public static function create(array $data, UserInterface $user) : ModelsPeoples
     {
         $createFields = [
             'name',
-            'address',
             'users_id',
             'companies_id'
         ];
 
         $data['users_id'] = $user->getId();
         $data['companies_id'] = $user->currentCompanyId();
-        $organization = new ModelsOrganizations();
+        $organization = new ModelsPeoples();
         $organization->saveOrFail($data, $createFields);
 
         return $organization;
@@ -53,11 +52,11 @@ class Organizations
      *
      * @param string $name
      * @param UserInterface $user
-     * @return ModelsOrganizations
+     * @return ModelsPeoples
      */
-    public static function getByName(string $name, UserInterface $user) : ModelsOrganizations
+    public static function getByName(string $name, UserInterface $user) : ModelsPeoples
     {
-        return ModelsOrganizations::findFirstOrFail(
+        return ModelsPeoples::findFirstOrFail(
             [
                 'conditions' => 'slug = :slug: AND companies_id = :companies_id: AND is_deleted = 0',
                 'bind' => [
@@ -71,15 +70,14 @@ class Organizations
     /**
      * Update organization
      *
-     * @param ModelsOrganizations $organization
+     * @param ModelsPeoples $organization
      * @param array $data
-     * @return ModelsOrganizations
+     * @return ModelsPeoples
      */
-    public static function update(ModelsOrganizations $organization, array $data) : ModelsOrganizations
+    public static function update(ModelsPeoples $organization, array $data) : ModelsPeoples
     {
         $updateFields = [
             'name',
-            'address'
         ];
 
         $organization->saveOrFail($data, $updateFields);

@@ -6,6 +6,7 @@ namespace Kanvas\Guild\Organizations\Models;
 
 use Baka\Database\Behaviors\Uuid;
 use Kanvas\Guild\BaseModel;
+use Phalcon\Utils\Slug;
 
 class Organizations extends BaseModel
 {
@@ -24,5 +25,26 @@ class Organizations extends BaseModel
         $this->addBehavior(
             new Uuid()
         );
+    }
+
+    /**
+     * Before create
+     *
+     * @return void
+     */
+    public function beforeCreate() : void
+    {
+        $this->slug = Slug::generate($this->name);
+        parent::beforeCreate();
+    }
+
+    /**
+     * Before save
+     *
+     * @return void
+     */
+    public function beforeSave() : void
+    {
+        $this->slug = Slug::generate($this->name);
     }
 }

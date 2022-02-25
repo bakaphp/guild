@@ -8,11 +8,24 @@ use Baka\Contracts\Database\ModelInterface;
 use Kanvas\Guild\Contracts\UserInterface;
 use Kanvas\Guild\Pipelines\Models\Pipelines as ModelsPipelines;
 use Kanvas\Guild\Pipelines\Models\Stages;
+use Kanvas\Guild\Traits\Searchable as SearchableTrait;
 use Phalcon\Mvc\Model\ResultsetInterface;
 use Phalcon\Utils\Slug;
 
 class Pipelines
 {
+    use SearchableTrait;
+
+    /**
+     * Set Model for traits.
+     *
+     * @return ModelInterface
+     */
+    public static function getModel() : ModelInterface
+    {
+        return new ModelsPipelines();
+    }
+
     /**
      * Create a new pipeline based on name and entity
      *
@@ -27,55 +40,10 @@ class Pipelines
         $pipeline->name = $name;
         $pipeline->users_id = $user->getId();
         $pipeline->companies_id = $user->currentCompanyId();
-        $pipeline->slug = Slug::generate($name);
         $pipeline->saveOrFail();
 
         return $pipeline;
     }
-
-    /**
-     * Get all pipelines associated to a company
-     *
-     * @param integer $page
-     * @param integer $limit
-     * @return ResultsetInterface
-     */
-    public static function getAll(UserInterface $user, int $page = 1, int $limit = 10) : ResultsetInterface
-    {
-        $offset = ($page - 1) * $limit;
-
-        $pipelines = ModelsPipelines::find([
-            'conditions' => 'companies_id = :company_id: AND is_deleted = 0',
-            'bind' => [
-                'company_id' => $user->currentCompanyId()
-            ],
-            'limit' => $limit,
-            'offset' => $offset
-        ]);
-
-        return $pipelines;
-    }
-
-
-    /**
-     * Get a pipeline by its id
-     *
-     * @param integer $id
-     * @return ModelsPipelines
-     */
-    public static function getById(int $id, UserInterface $user) : ModelsPipelines
-    {
-        return ModelsPipelines::findFirstOrFail(
-            [
-                'conditions' => 'id = :id: AND companies_id = :companies_id: AND is_deleted = 0',
-                'bind' => [
-                    'id' => $id,
-                    'companies_id' => $user->currentCompanyId(),
-                ]
-            ]
-        );
-    }
-
 
     /**
      * Update pipeline
@@ -87,7 +55,6 @@ class Pipelines
     public static function update(ModelsPipelines $pipeline, string $name) : ModelsPipelines
     {
         $pipeline->name = $name;
-        $pipeline->slug = Slug::generate($name);
         $pipeline->saveOrFail();
 
         return $pipeline;
