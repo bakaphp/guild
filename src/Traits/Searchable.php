@@ -58,4 +58,26 @@ trait Searchable
             ]
         );
     }
+
+     /**
+     *  Get a domain data by its uuid.
+     *
+     * @param string $uui
+     * @param UserInterface $user
+     *
+     * @return ModelInterface
+     */
+    public static function getByUuid(string $uuid, UserInterface $user) : ModelInterface
+    {
+        $model = self::getModel();
+
+        return $model::findFirstOrFail([
+            'conditions' => 'uuid = :uuid: 
+                            AND companies_id = :companies_id: AND is_deleted = 0',
+            'bind' => [
+                'uuid' => $uuid,
+                'companies_id' => $user->currentCompanyId(),
+            ]
+        ]);
+    }
 }
