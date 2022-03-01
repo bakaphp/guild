@@ -336,20 +336,20 @@ Rotations Agents
 -----------
 ### Add
 ```php
-Rotations::addAgents($rotation, $user, $percent, $hits);
+Agents::create($rotation, $user, $percent, $hits);
 ```
 
 ### Get Agents
 ```php
-Rotations::getAllAgents($rotation, $page, $limit);
+Agents::getAllAgents($rotation, $page, $limit);
 
-Rotations::getAgentsByUser($user);
+Agents::getAgentsFromRotation($rotation, $page, $limit);
 
-Rotation::getAgentById(2);
+Agents::getAgentById(2, $user);
 ```
 
 ### Edit Agent
 ```php
-$agent = Rotation::getAgentById(2);
-Rotations::editRotationAgent($agent, $data);
+$agent = Rotation::getAgentById(2, $user);
+Rotations::updateAgent($agent, $data);
 ```
