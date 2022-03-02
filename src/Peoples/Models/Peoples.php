@@ -22,5 +22,25 @@ class Peoples extends BaseModel
         $this->addBehavior(
             new Uuid()
         );
+
+        $this->hasMany(
+            'id',
+            PeoplesAddress::class,
+            'peoples_id',
+            [
+                'reusable' => true,
+                'alias' => 'address',
+            ]
+        );
+
+        $this->hasMany(
+            'id',
+            PeoplesContacts::class,
+            'peoples_id',
+            [
+                'reusable' => true,
+                'alias' => 'contacts',
+            ]
+        );
     }
 }

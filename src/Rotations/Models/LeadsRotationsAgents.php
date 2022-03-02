@@ -19,5 +19,15 @@ class LeadsRotationsAgents extends BaseModel
     {
         parent::initialize();
         $this->setSource('leads_rotations_agents');
+
+        $this->belongsTo(
+            'rotations_id',
+            Rotations::class,
+            'id',
+            [
+                'reusable' => true,
+                'alias' => 'rotation',
+            ]
+        );
     }
 }

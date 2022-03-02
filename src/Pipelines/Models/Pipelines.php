@@ -19,6 +19,16 @@ class Pipelines extends BaseModel
     {
         parent::initialize();
         $this->setSource('pipelines');
+
+        $this->hasMany(
+            'id',
+            Stages::class,
+            'pipelines_id',
+            [
+                'reusable' => true,
+                'alias' => 'stages',
+            ]
+        );
     }
 
         /**
