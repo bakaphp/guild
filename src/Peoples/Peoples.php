@@ -7,6 +7,7 @@ namespace Kanvas\Guild\Peoples;
 use Baka\Contracts\Database\ModelInterface;
 use Kanvas\Guild\Contracts\UserInterface;
 use Kanvas\Guild\Peoples\Models\Peoples as ModelsPeoples;
+use Kanvas\Guild\Peoples\Models\PeoplesAddress;
 use Kanvas\Guild\Traits\Searchable as SearchableTrait;
 use Phalcon\Utils\Slug;
 
@@ -83,5 +84,34 @@ class Peoples
         $organization->saveOrFail($data, $updateFields);
 
         return $organization;
+    }
+
+    /**
+     * Create a new address
+     *
+     * @param ModelsPeoples $peoples
+     * @param array $data
+     * @param boolean $isDefault
+     * @return PeoplesAddress
+     */
+    public static function addAddress(ModelsPeoples $peoples, array $data, bool $isDefault = false) : PeoplesAddress
+    {
+        $createFields = [
+            'peoples_id',
+            'address',
+            'address_2',
+            'city',
+            'state',
+            'zip',
+            'is_default'
+        ];
+
+        $data['peoples_id'] = $peoples->getId();
+        $data['is_default'] = $isDefault;
+
+        $newAddress = new PeoplesAddress();
+        $newAddress->saveOrFail($data, $createFields);
+
+        return $newAddress;
     }
 }
