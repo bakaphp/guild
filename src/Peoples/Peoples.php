@@ -107,7 +107,7 @@ class Peoples
         ];
 
         $data['peoples_id'] = $peoples->getId();
-        $data['is_default'] = $isDefault;
+        $data['is_default'] = (int) $isDefault;
 
         $newAddress = new PeoplesAddress();
         $newAddress->saveOrFail($data, $createFields);
