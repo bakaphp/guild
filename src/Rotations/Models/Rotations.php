@@ -18,6 +18,16 @@ class Rotations extends BaseModel
     {
         parent::initialize();
         $this->setSource('rotations');
+
+        $this->hasMany(
+            'id',
+            LeadsRotationsAgents::class,
+            'rotations_id',
+            [
+                'reusable' => true,
+                'alias' => 'rotationAgents',
+            ]
+        );
     }
 
         /**

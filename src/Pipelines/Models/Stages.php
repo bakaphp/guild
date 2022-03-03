@@ -18,5 +18,15 @@ class Stages extends BaseModel
     {
         parent::initialize();
         $this->setSource('pipelines_stages');
+
+        $this->belongsTo(
+            'pipelines_id',
+            Pipelines::class,
+            'id',
+            [
+                'reusable' => true,
+                'alias' => 'pipeline',
+            ]
+        );
     }
 }

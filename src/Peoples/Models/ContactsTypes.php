@@ -4,39 +4,24 @@ declare(strict_types=1);
 
 namespace Kanvas\Guild\Peoples\Models;
 
-use Baka\Database\Behaviors\Uuid;
 use Kanvas\Guild\BaseModel;
 
-class Peoples extends BaseModel
+class ContactsTypes extends BaseModel
 {
-    public string $uuid;
     public int $companies_id;
     public int $users_id;
     public string $name;
+    public string $icon;
 
     public function initialize()
     {
         parent::initialize();
-        $this->setSource('peoples');
-
-        $this->addBehavior(
-            new Uuid()
-        );
-
-        $this->hasMany(
-            'id',
-            PeoplesAddress::class,
-            'peoples_id',
-            [
-                'reusable' => true,
-                'alias' => 'address',
-            ]
-        );
+        $this->setSource('contacts_types');
 
         $this->hasMany(
             'id',
             PeoplesContacts::class,
-            'peoples_id',
+            'contacts_types_id',
             [
                 'reusable' => true,
                 'alias' => 'contacts',
