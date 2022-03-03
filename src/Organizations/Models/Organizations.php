@@ -6,6 +6,7 @@ namespace Kanvas\Guild\Organizations\Models;
 
 use Baka\Database\Behaviors\Uuid;
 use Kanvas\Guild\BaseModel;
+use Kanvas\Guild\Peoples\Models\Peoples;
 use Phalcon\Utils\Slug;
 
 class Organizations extends BaseModel
@@ -24,6 +25,19 @@ class Organizations extends BaseModel
 
         $this->addBehavior(
             new Uuid()
+        );
+
+        $this->hasManyToMany(
+            'id',
+            OrganizationsPeoples::class,
+            'organizations_id',
+            'peoples_id',
+            Peoples::class,
+            'id',
+            [
+                'reusable' => true,
+                'alias' => 'peoples',
+            ]
         );
     }
 
