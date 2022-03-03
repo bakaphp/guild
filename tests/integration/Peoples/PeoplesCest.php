@@ -6,7 +6,6 @@ namespace Kanvas\Guild\Tests\Integration\Pipelines;
 
 use IntegrationTester;
 use Kanvas\Guild\Peoples\Contacts;
-use Kanvas\Guild\Peoples\Models\ContactsTypes;
 use Kanvas\Guild\Peoples\Models\Peoples as ModelsPeoples;
 use Kanvas\Guild\Peoples\Models\PeoplesAddress;
 use Kanvas\Guild\Peoples\Peoples;

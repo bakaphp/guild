@@ -6,6 +6,8 @@ namespace Kanvas\Guild\Peoples\Models;
 
 use Baka\Database\Behaviors\Uuid;
 use Kanvas\Guild\BaseModel;
+use Kanvas\Guild\Organizations\Models\Organizations;
+use Kanvas\Guild\Organizations\Models\OrganizationsPeoples;
 
 class Peoples extends BaseModel
 {
@@ -40,6 +42,19 @@ class Peoples extends BaseModel
             [
                 'reusable' => true,
                 'alias' => 'contacts',
+            ]
+        );
+
+        $this->hasManyToMany(
+            'id',
+            OrganizationsPeoples::class,
+            'peoples_id',
+            'organizations_id',
+            Organizations::class,
+            'id',
+            [
+                'reusable' => true,
+                'alias' => 'organizations',
             ]
         );
     }
