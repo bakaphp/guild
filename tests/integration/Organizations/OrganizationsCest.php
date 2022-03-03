@@ -6,7 +6,9 @@ namespace Kanvas\Guild\Tests\Integration\Pipelines;
 
 use IntegrationTester;
 use Kanvas\Guild\Organizations\Models\Organizations as ModelsOrganizations;
+use Kanvas\Guild\Organizations\Models\OrganizationsPeoples;
 use Kanvas\Guild\Organizations\Organizations;
+use Kanvas\Guild\Peoples\Peoples;
 use Kanvas\Guild\Tests\Support\Models\Users;
 
 class OrganizationsCest
@@ -77,5 +79,35 @@ class OrganizationsCest
         $organization = Organizations::update($this->organization, $updateData);
 
         $I->assertEquals($organization->name, $this->organization->name);
+    }
+
+    /**
+     * Test add people to an organization
+     *
+     * @param IntegrationTester $I
+     * @return void
+     */
+    public function testAddPeopleOrganization(IntegrationTester $I) : void
+    {
+        $peopleData = [
+            'name' => 'Organizerino Empredieur',
+        ];
+
+        $organizationData = [
+            'name' => 'organization name 1',
+            'address' => 'Lomina 22, #44, Santo domingo Arriba'
+        ];
+
+        $organization = Organizations::create($organizationData, new Users());
+
+        $people = Peoples::create($peopleData, new Users());
+
+        $organizationPeoples = Organizations::addPeople($organization, $people);
+
+        $I->assertInstanceOf(OrganizationsPeoples::class, $organizationPeoples);
+        $I->assertEquals(
+            $organization->getId(),
+            $people->getOrganizations()->toArray()[0]['id']
+        );
     }
 }
