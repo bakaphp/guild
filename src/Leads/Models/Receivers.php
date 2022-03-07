@@ -50,7 +50,7 @@ class Receivers extends BaseModel
      */
     public function setDefault(bool $isDefault) : Receivers
     {
-        $this->is_default = $isDefault;
+        $this->is_default = (int) $isDefault;
         $this->saveOrFail();
 
         return $this;
@@ -64,6 +64,7 @@ class Receivers extends BaseModel
     public function incrementTotalLeads() : int
     {
         $this->total_leads = ++$this->total_leads;
+        $this->saveOrFail();
         return $this->total_leads;
     }
 
@@ -76,6 +77,7 @@ class Receivers extends BaseModel
     public function decreaseTotalLeads() : int
     {
         $this->total_leads = --$this->total_leads;
+        $this->saveOrFail();
         return $this->total_leads;
     }
 }
