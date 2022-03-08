@@ -11,7 +11,7 @@ class BaseIntegration
 {
     public DataBuilder $dataBuilder;
 
-    public function onConstruct()
+    public function _before() : void
     {
         $this->dataBuilder = new DataBuilder(new Users());
     }
