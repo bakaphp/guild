@@ -10,7 +10,6 @@ use Kanvas\Guild\Pipelines\Models\Pipelines as ModelsPipelines;
 use Kanvas\Guild\Pipelines\Models\Stages;
 use Kanvas\Guild\Traits\Searchable as SearchableTrait;
 use Phalcon\Mvc\Model\ResultsetInterface;
-use Phalcon\Utils\Slug;
 
 class Pipelines
 {
