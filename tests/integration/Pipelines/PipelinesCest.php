@@ -7,10 +7,11 @@ namespace Kanvas\Guild\Tests\Integration\Pipelines;
 use IntegrationTester;
 use Kanvas\Guild\Pipelines\Models\Pipelines as ModelsPipelines;
 use Kanvas\Guild\Pipelines\Pipelines;
+use Kanvas\Guild\Tests\Support\BaseIntegration;
 use Kanvas\Guild\Tests\Support\Models\Missions;
 use Kanvas\Guild\Tests\Support\Models\Users;
 
-class PipelinesCest
+class PipelinesCest extends BaseIntegration
 {
     public ModelsPipelines $pipeline;
 
@@ -39,6 +40,8 @@ class PipelinesCest
      */
     public function testGetAllPipelines(IntegrationTester $I) : void
     {
+        $this->dataBuilder->createPipeline();
+
         $pipelines = Pipelines::getAll(new Users())->toArray();
 
         $I->assertTrue(isset($pipelines[0]['id']));
@@ -52,9 +55,10 @@ class PipelinesCest
      */
     public function testGetPipelineById(IntegrationTester $I) : void
     {
-        $pipeline = Pipelines::getById($this->pipeline->getId(), new Users());
+        $newPipeline = $this->dataBuilder->createPipeline();
+        $pipeline = Pipelines::getById($newPipeline->getId(), new Users());
 
-        $I->assertEquals($pipeline->getId(), $this->pipeline->getId());
+        $I->assertEquals($pipeline->getId(), $newPipeline->getId());
     }
 
 
@@ -66,8 +70,9 @@ class PipelinesCest
      */
     public function testUpdatePipeline(IntegrationTester $I) : void
     {
-        $pipeline = Pipelines::update($this->pipeline, "Update Pipeline");
+        $pipeline = $this->dataBuilder->createPipeline();
+        $updatedPipeline = Pipelines::update($pipeline, "Update Pipeline");
 
-        $I->assertEquals($pipeline->name, $this->pipeline->name);
+        $I->assertEquals($updatedPipeline->name, $pipeline->name);
     }
 }
