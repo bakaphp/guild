@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace Kanvas\Guild\Rotations\Models;
 
 use Kanvas\Guild\BaseModel;
+use Kanvas\Guild\Leads\Models\Receivers;
 
 class LeadsRotationsAgents extends BaseModel
 {
     public int $rotations_id;
+    public int $receivers_id;
     public int $companies_id;
     public int $users_id;
     public ?string $phone;
@@ -27,6 +29,16 @@ class LeadsRotationsAgents extends BaseModel
             [
                 'reusable' => true,
                 'alias' => 'rotation',
+            ]
+        );
+
+        $this->belongsTo(
+            'receivers_id',
+            Receivers::class,
+            'id',
+            [
+                'reusable' => true,
+                'alias' => 'receiver',
             ]
         );
     }

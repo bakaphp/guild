@@ -2,10 +2,15 @@
 namespace Helper;
 
 use Kanvas\Guild\Contracts\UserInterface;
+use Kanvas\Guild\Leads\Models\Receivers as ModelsReceivers;
+use Kanvas\Guild\Leads\Receivers;
 use Kanvas\Guild\Pipelines\Models\Pipelines as ModelsPipelines;
 use Kanvas\Guild\Pipelines\Models\Stages;
 use Kanvas\Guild\Pipelines\Pipelines;
+use Kanvas\Guild\Rotations\Models\Rotations as ModelsRotations;
+use Kanvas\Guild\Rotations\Rotations;
 use Kanvas\Guild\Tests\Support\Models\Missions;
+use Kanvas\Guild\Tests\Support\Models\Users;
 
 class DataBuilder
 {
@@ -48,5 +53,28 @@ class DataBuilder
             true,
             14
         );
+    }
+
+    /**
+     * Create a new receiver for testing
+     *
+     * @return ModelsReceivers
+     */
+    public function createReceiver() : ModelsReceivers
+    {
+        $name = "Receiver No.".rand(1, 100);
+
+        return Receivers::create(new Users(), $name, $this->createRotation(), 'Walkin');
+    }
+
+    /**
+     * Create a new Rotation for testing
+     *
+     * @return ModelsRotations
+     */
+    public function createRotation() : ModelsRotations
+    {
+        $name = "Rotation No.".rand(1, 100);
+        return Rotations::create($name, new Users());
     }
 }
