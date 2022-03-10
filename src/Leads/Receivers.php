@@ -7,12 +7,8 @@ namespace Kanvas\Guild\Leads;
 use Baka\Contracts\Database\ModelInterface;
 use Kanvas\Guild\Contracts\UserInterface;
 use Kanvas\Guild\Leads\Models\Receivers as ModelsReceivers;
-use Kanvas\Guild\Organizations\Models\Organizations as ModelsOrganizations;
-use Kanvas\Guild\Organizations\Models\OrganizationsPeoples;
-use Kanvas\Guild\Peoples\Models\Peoples;
 use Kanvas\Guild\Rotations\Models\Rotations;
 use Kanvas\Guild\Traits\Searchable as SearchableTrait;
-use Phalcon\Utils\Slug;
 
 class Receivers
 {
@@ -51,6 +47,23 @@ class Receivers
         $receiver->saveOrFail();
 
         return $receiver;
+    }
+
+    /**
+     * Get the default receiver from a user company
+     *
+     * @param UserInterface $user
+     * @return ModelsReceivers
+     */
+    public static function getDefault(UserInterface $user) : ModelsReceivers
+    {
+        return ModelsReceivers::findFirst([
+            'conditions' => 'companies_id = :company_id: AND is_default = :is_default:',
+            'bind' => [
+                'company_id' => $user->currentCompanyId(),
+                'is_default' => 1
+            ]
+        ]);
     }
 
     /**

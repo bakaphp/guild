@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Kanvas\Guild\Rotations\Models;
 
 use Kanvas\Guild\BaseModel;
+use Kanvas\Guild\Leads\Models\Receivers;
 use Phalcon\Utils\Slug;
 
 class Rotations extends BaseModel
@@ -26,6 +27,16 @@ class Rotations extends BaseModel
             [
                 'reusable' => true,
                 'alias' => 'rotationAgents',
+            ]
+        );
+
+        $this->hasMany(
+            'id',
+            Receivers::class,
+            'rotations_id',
+            [
+                'reusable' => true,
+                'alias' => 'receivers'
             ]
         );
     }

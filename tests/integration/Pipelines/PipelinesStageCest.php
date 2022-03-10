@@ -8,8 +8,9 @@ use IntegrationTester;
 use Kanvas\Guild\Pipelines\Models\Pipelines as ModelsPipelines;
 use Kanvas\Guild\Pipelines\Models\Stages;
 use Kanvas\Guild\Pipelines\Pipelines;
+use Kanvas\Guild\Tests\Support\BaseIntegration;
 
-class PipelinesStageCest
+class PipelinesStageCest extends BaseIntegration
 {
     public ModelsPipelines $pipeline;
     public Stages $pipelineStage;
@@ -18,12 +19,12 @@ class PipelinesStageCest
      * Test create a new pipeline
      *
      * @param IntegrationTester $I
-     * @before getPipeline
      * @return void
      */
-    public function testCreatePipelineStage(IntegrationTester $I) : void
+    public function testACreatePipelineStage(IntegrationTester $I) : void
     {
         $name = "First Pipeline Stage";
+        $this->pipeline = $this->dataBuilder->createPipeline();
 
         $pipelineStage = Pipelines::createStage(
             $this->pipeline,
@@ -71,9 +72,11 @@ class PipelinesStageCest
      */
     public function testGetPipelineStageById(IntegrationTester $I) : void
     {
-        $pipelineStage = Pipelines::getStageById($this->pipelineStage->getId());
+        $stage = $this->dataBuilder->createPipelineStage();
 
-        $I->assertEquals($pipelineStage->getId(), $this->pipelineStage->getId());
+        $pipelineStage = Pipelines::getStageById($stage->getId());
+
+        $I->assertEquals($pipelineStage->getId(), $stage->getId());
     }
 
 
@@ -91,18 +94,8 @@ class PipelinesStageCest
             'name' => 'Update stage'
         ];
 
-        $pipeline = Pipelines::updateStage($this->pipelineStage, $data);
+        $pipeline = Pipelines::updateStage($this->dataBuilder->createPipelineStage(), $data);
 
         $I->assertEquals($pipeline->name, $data['name']);
-    }
-
-    /**
-     * Set a pipeline
-     *
-     * @return void
-     */
-    private function getPipeline() : void
-    {
-        $this->pipeline = ModelsPipelines::findFirst();
     }
 }

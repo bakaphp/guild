@@ -30,7 +30,7 @@ class Rotations
      *
      * @param string $name
      * @param UserInterface $user
-     * @return ModelsPipelines
+     * @return ModelsRotations
      */
     public static function create(string $name, UserInterface $user) : ModelsRotations
     {
