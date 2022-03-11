@@ -4,6 +4,10 @@ namespace Helper;
 use Kanvas\Guild\Contracts\UserInterface;
 use Kanvas\Guild\Leads\Models\Receivers as ModelsReceivers;
 use Kanvas\Guild\Leads\Receivers;
+use Kanvas\Guild\Organizations\Models\Organizations as ModelOrganizations;
+use Kanvas\Guild\Organizations\Organizations;
+use Kanvas\Guild\Peoples\Models\Peoples as ModelPeoples;
+use Kanvas\Guild\Peoples\Peoples;
 use Kanvas\Guild\Pipelines\Models\Pipelines as ModelsPipelines;
 use Kanvas\Guild\Pipelines\Models\Stages;
 use Kanvas\Guild\Pipelines\Pipelines;
@@ -76,5 +80,34 @@ class DataBuilder
     {
         $name = "Rotation No.".rand(1, 100);
         return Rotations::create($name, new Users());
+    }
+
+    /**
+     * Create a new Organization for testing
+     *
+     * @return ModelOrganizations
+     */
+    public function createOrganization() : ModelOrganizations
+    {
+        $data = [
+            'name' => "Organization No.".rand(1, 100),
+            'address' => 'Lomina 22, #44, Santo domingo Arriba'
+        ];
+
+        return Organizations::create($data, new Users());
+    }
+
+    /**
+     * Create a new Peoples for testing
+     *
+     * @return ModelPeoples
+     */
+    public function createPeople() : ModelPeoples
+    {
+        $data = [
+            'name' => "Numerologo Paulino.".rand(1, 100)
+        ];
+
+        return Peoples::create($data, new Users());
     }
 }
