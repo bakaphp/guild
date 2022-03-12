@@ -8,9 +8,10 @@ use IntegrationTester;
 use Kanvas\Guild\Rotations\Agents;
 use Kanvas\Guild\Rotations\Models\LeadsRotationsAgents;
 use Kanvas\Guild\Rotations\Models\Rotations as ModelsRotations;
+use Kanvas\Guild\Tests\Support\BaseIntegration;
 use Kanvas\Guild\Tests\Support\Models\Users;
 
-class AgentsCest
+class AgentsCest extends BaseIntegration
 {
     public ModelsRotations $rotations;
     public LeadsRotationsAgents $agent;
@@ -26,7 +27,7 @@ class AgentsCest
         $user = new Users();
         $user->phone_number = "809-909-8811";
 
-        $agent = Agents::create($this->rotations, $user, 0.5, 3);
+        $agent = Agents::create($this->rotations, $user, $this->dataBuilder->createReceiver(), 0.5, 3);
 
         $this->agent = $agent;
 
@@ -54,7 +55,14 @@ class AgentsCest
      */
     public function testGetAgentsById(IntegrationTester $I) : void
     {
-        $agent = Agents::create($this->rotations, new Users(), 0.5, 3);
+        $agent = Agents::create(
+            $this->rotations,
+            new Users(),
+            $this->dataBuilder->createReceiver(),
+            0.5,
+            3
+        );
+
         $agent = Agents::getById($agent->getId(), new Users());
 
         $I->assertInstanceOf(LeadsRotationsAgents::class, $agent);
@@ -68,7 +76,14 @@ class AgentsCest
      */
     public function testEditRotationAgent(IntegrationTester $I) : void
     {
-        $agent = Agents::create($this->rotations, new Users(), 0.5, 3);
+        $agent = Agents::create(
+            $this->rotations,
+            new Users(),
+            $this->dataBuilder->createReceiver(),
+            0.5,
+            3
+        );
+
         $data = [
             'phone' => '1-998-093-2344',
             'percent' => 0.54,

@@ -6,6 +6,7 @@ namespace Kanvas\Guild\Rotations;
 
 use Baka\Contracts\Database\ModelInterface;
 use Kanvas\Guild\Contracts\UserInterface;
+use Kanvas\Guild\Leads\Models\Receivers;
 use Kanvas\Guild\Rotations\Models\LeadsRotationsAgents;
 use Kanvas\Guild\Rotations\Models\Rotations as ModelsRotations;
 use Kanvas\Guild\Traits\Searchable as SearchableTrait;
@@ -34,11 +35,12 @@ class Agents
      * @param integer $hits
      * @return LeadsRotationsAgents
      */
-    public static function create(ModelsRotations $rotation, UserInterface $user, float $percent, int $hits) : LeadsRotationsAgents
+    public static function create(ModelsRotations $rotation, UserInterface $user, Receivers $receiver, float $percent, int $hits) : LeadsRotationsAgents
     {
         $agent = new LeadsRotationsAgents();
         $agent->rotations_id = $rotation->getId();
         $agent->companies_id = $rotation->companies_id;
+        $agent->receivers_id = $receiver->getId();
         $agent->users_id = $user->getId();
         $agent->phone = $user->phone_number ?? '';
         $agent->percent = $percent;
