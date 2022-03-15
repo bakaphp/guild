@@ -1,19 +1,23 @@
 <?php
 namespace Helper;
 
+use Helper\DataBuilder\Leads as DataBuilderLeads;
+use Helper\DataBuilder\Organizations as DataBuilderOrganizations;
+use Helper\DataBuilder\Peoples as DataBuilderPeoples;
+use Helper\DataBuilder\Pipelines as DataBuilderPipelines;
+use Helper\DataBuilder\Receivers as DataBuilderReceivers;
+use Helper\DataBuilder\Rotations as DataBuilderRotations;
 use Kanvas\Guild\Contracts\UserInterface;
+use Kanvas\Guild\Leads\Models\Leads as ModelsLeads;
 use Kanvas\Guild\Leads\Models\Receivers as ModelsReceivers;
-use Kanvas\Guild\Leads\Receivers;
+use Kanvas\Guild\Leads\Models\Source;
+use Kanvas\Guild\Leads\Models\Status;
+use Kanvas\Guild\Leads\Models\Types as ModelLeadTypes;
 use Kanvas\Guild\Organizations\Models\Organizations as ModelOrganizations;
-use Kanvas\Guild\Organizations\Organizations;
 use Kanvas\Guild\Peoples\Models\Peoples as ModelPeoples;
-use Kanvas\Guild\Peoples\Peoples;
 use Kanvas\Guild\Pipelines\Models\Pipelines as ModelsPipelines;
 use Kanvas\Guild\Pipelines\Models\Stages;
-use Kanvas\Guild\Pipelines\Pipelines;
 use Kanvas\Guild\Rotations\Models\Rotations as ModelsRotations;
-use Kanvas\Guild\Rotations\Rotations;
-use Kanvas\Guild\Tests\Support\Models\Missions;
 use Kanvas\Guild\Tests\Support\Models\Users;
 
 class DataBuilder
@@ -37,9 +41,7 @@ class DataBuilder
      */
     public function createPipeline() : ModelsPipelines
     {
-        $name = "Pipeline No.".rand(1, 100);
-
-        return Pipelines::create($name, new Missions(), $this->user);
+        return DataBuilderPipelines::createPipeline(new Users());
     }
 
     /**
@@ -49,14 +51,7 @@ class DataBuilder
      */
     public function createPipelineStage() : Stages
     {
-        $name = "Pipeline Stage No.".rand(1, 100);
-
-        return Pipelines::createStage(
-            $this->createPipeline(),
-            $name,
-            true,
-            14
-        );
+        return DataBuilderPipelines::createPipelineStage();
     }
 
     /**
@@ -66,9 +61,7 @@ class DataBuilder
      */
     public function createReceiver() : ModelsReceivers
     {
-        $name = "Receiver No.".rand(1, 100);
-
-        return Receivers::create(new Users(), $name, $this->createRotation(), 'Walkin');
+        return DataBuilderReceivers::createReceiver();
     }
 
     /**
@@ -78,8 +71,7 @@ class DataBuilder
      */
     public function createRotation() : ModelsRotations
     {
-        $name = "Rotation No.".rand(1, 100);
-        return Rotations::create($name, new Users());
+        return DataBuilderRotations::createRotation();
     }
 
     /**
@@ -89,12 +81,7 @@ class DataBuilder
      */
     public function createOrganization() : ModelOrganizations
     {
-        $data = [
-            'name' => "Organization No.".rand(1, 100),
-            'address' => 'Lomina 22, #44, Santo domingo Arriba'
-        ];
-
-        return Organizations::create($data, new Users());
+        return DataBuilderOrganizations::createOrganization();
     }
 
     /**
@@ -104,10 +91,46 @@ class DataBuilder
      */
     public function createPeople() : ModelPeoples
     {
-        $data = [
-            'name' => "Numerologo Paulino.".rand(1, 100)
-        ];
+        return DataBuilderPeoples::createPeople();
+    }
 
-        return Peoples::create($data, new Users());
+    /**
+     * Create new lead for testing
+     *
+     * @return ModelsLeads
+     */
+    public function createLead() : ModelsLeads
+    {
+        return DataBuilderLeads::createLead();
+    }
+
+    /**
+     * Create lead type for testing
+     *
+     * @return ModelLeadTypes
+     */
+    public function createLeadType() : ModelLeadTypes
+    {
+        return DataBuilderLeads::createLeadType();
+    }
+
+    /**
+     * Create lead status for tests
+     *
+     * @return Status
+     */
+    public function createLeadStatus() : Status
+    {
+        return DataBuilderLeads::createLeadStatus();
+    }
+
+    /**
+     * Create lead source for testing
+     *
+     * @return Source
+     */
+    public function createLeadSource() : Source
+    {
+        return DataBuilderLeads::createLeadSource();
     }
 }
