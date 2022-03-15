@@ -3,6 +3,7 @@ namespace Helper;
 
 use Helper\DataBuilder\Leads as DataBuilderLeads;
 use Helper\DataBuilder\Organizations as DataBuilderOrganizations;
+use Helper\DataBuilder\Participants as DataBuildersParticipants;
 use Helper\DataBuilder\Peoples as DataBuilderPeoples;
 use Helper\DataBuilder\Pipelines as DataBuilderPipelines;
 use Helper\DataBuilder\Receivers as DataBuilderReceivers;
@@ -14,6 +15,7 @@ use Kanvas\Guild\Leads\Models\Source;
 use Kanvas\Guild\Leads\Models\Status;
 use Kanvas\Guild\Leads\Models\Types as ModelLeadTypes;
 use Kanvas\Guild\Organizations\Models\Organizations as ModelOrganizations;
+use Kanvas\Guild\Participants\Models\Types as ParticipantsTypes;
 use Kanvas\Guild\Peoples\Models\Peoples as ModelPeoples;
 use Kanvas\Guild\Pipelines\Models\Pipelines as ModelsPipelines;
 use Kanvas\Guild\Pipelines\Models\Stages;
@@ -132,5 +134,10 @@ class DataBuilder
     public function createLeadSource() : Source
     {
         return DataBuilderLeads::createLeadSource();
+    }
+
+    public function createParticipantsType() : ParticipantsTypes
+    {
+        return DataBuildersParticipants::createParticipantsType();
     }
 }
