@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Kanvas\Guild\Tests\Integration\Pipelines;
+namespace Kanvas\Guild\Tests\Integration\Deals;
 
 use IntegrationTester;
 use Kanvas\Guild\Deals\Deals;

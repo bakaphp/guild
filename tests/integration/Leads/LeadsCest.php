@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Kanvas\Guild\Tests\Integration\Pipelines;
+namespace Kanvas\Guild\Tests\Integration\Leads;
 
 use IntegrationTester;
 use Kanvas\Guild\Leads\Leads;
