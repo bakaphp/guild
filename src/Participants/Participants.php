@@ -34,7 +34,7 @@ class Participants
      * @param ParticipantsTypes $type
      * @return ModelParticipants
      */
-    public static function addParticipant(ModelsLeads $lead, Peoples $people, ParticipantsTypes $type) : ModelParticipants
+    public static function add(ModelsLeads $lead, Peoples $people, ParticipantsTypes $type) : ModelParticipants
     {
         $newParticipant = new ModelParticipants();
         $newParticipant->leads_id = $lead->getId();

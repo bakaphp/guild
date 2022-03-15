@@ -24,7 +24,7 @@ class ParticipantsCest extends BaseIntegration
     public function testCreateParticipants(IntegrationTester $I) : void
     {
 
-        $participant = Participants::addParticipant(
+        $participant = Participants::add(
             $this->dataBuilder->createLead(),
             $this->dataBuilder->createPeople(),
             $this->dataBuilder->createParticipantsType()
