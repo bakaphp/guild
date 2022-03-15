@@ -6,7 +6,10 @@ namespace Kanvas\Guild\Leads\Models;
 
 use Baka\Database\Behaviors\Uuid;
 use Kanvas\Guild\BaseModel;
-use Kanvas\Guild\Rotations\Models\Rotations;
+use Kanvas\Guild\Participants\Models\Participants as ModelParticipants;
+use Kanvas\Guild\Participants\Models\Types as ParticipantsTypes;
+use Kanvas\Guild\Participants\Participants;
+use Kanvas\Guild\Peoples\Models\Peoples;
 
 class Leads extends BaseModel
 {
@@ -36,5 +39,17 @@ class Leads extends BaseModel
         $this->addBehavior(
             new Uuid()
         );
+    }
+
+    /**
+     * Add a new participant to the current lead.
+     *
+     * @param Peoples $people
+     * @param ParticipantsTypes $participantType
+     * @return Participants
+     */
+    public function addParticipant(Peoples $people, ParticipantsTypes $participantType) : ModelParticipants
+    {
+        return Participants::add($this, $people, $participantType);
     }
 }
