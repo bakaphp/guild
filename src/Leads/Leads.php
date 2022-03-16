@@ -64,6 +64,7 @@ class Leads
         $newLead->saveOrFail();
 
         $agent->getReceiver()->incrementTotalLeads();
+        $agent->increaseHit();
 
         return $newLead;
     }
