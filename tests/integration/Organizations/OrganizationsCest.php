@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Kanvas\Guild\Tests\Integration\Pipelines;
+namespace Kanvas\Guild\Tests\Integration\Organizations;
 
 use IntegrationTester;
 use Kanvas\Guild\Organizations\Models\Organizations as ModelsOrganizations;
