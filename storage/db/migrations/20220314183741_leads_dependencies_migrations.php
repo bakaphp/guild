@@ -225,6 +225,13 @@ class LeadsDependenciesMigrations extends Phinx\Migration\AbstractMigration
                 'name' => 'deals_leads_FK',
                 'unique' => false,
             ])
+            ->addForeignKey(
+                'leads_id',
+                'leads',
+                'id',
+                ['constraint' => 'deals_leads_FK'],
+                ['delete' => 'NO_ACTION', 'update' => 'NO_ACTION']
+            )
             ->create();
         $this->table('leads_participants', [
                 'id' => false,
@@ -283,6 +290,27 @@ class LeadsDependenciesMigrations extends Phinx\Migration\AbstractMigration
                 'name' => 'leads_participants_peoples_FK',
                 'unique' => false,
             ])
+            ->addForeignKey(
+                'leads_id',
+                'leads',
+                'id',
+                ['constraint' => 'leads_participants_leads_FK'],
+                ['delete' => 'NO_ACTION', 'update' => 'NO_ACTION']
+            )
+            ->addForeignKey(
+                'peoples_id',
+                'peoples',
+                'id',
+                ['constraint' => 'leads_participants_peoples_FK'],
+                ['delete' => 'NO_ACTION', 'update' => 'NO_ACTION']
+            )
+            ->addForeignKey(
+                'participants_types_id',
+                'leads_participants_types',
+                'id',
+                ['constraint' => 'leads_participants_types_FK'],
+                ['delete' => 'NO_ACTION', 'update' => 'NO_ACTION']
+            )
             ->create();
         $this->table('activities_types', [
                 'id' => false,
@@ -355,6 +383,13 @@ class LeadsDependenciesMigrations extends Phinx\Migration\AbstractMigration
                 'name' => 'activities_leads_FK',
                 'unique' => false,
             ])
+            ->addForeignKey(
+                'leads_id',
+                'leads',
+                'id',
+                ['constraint' => 'activities_leads_FK'],
+                ['delete' => 'NO_ACTION', 'update' => 'NO_ACTION']
+            )
             ->save();
     }
 }
