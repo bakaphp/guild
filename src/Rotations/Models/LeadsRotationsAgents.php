@@ -42,4 +42,17 @@ class LeadsRotationsAgents extends BaseModel
             ]
         );
     }
+
+    /**
+     * Increase the total hits of the current agent by one.
+     *
+     * @return integer
+     */
+    public function increaseHit() : int
+    {
+        $this->hits = ++$this->hits;
+        $this->saveOrFail();
+
+        return $this->hits;
+    }
 }
