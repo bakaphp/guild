@@ -131,7 +131,7 @@ class Agents
         return (int) LeadsRotationsAgents::sum([
             'column' => 'hits',
             'conditions' => 'rotations_id = ?0',
-            'bind' => [$rotation->id],
+            'bind' => [$rotation->getId()],
         ]);
     }
 }
