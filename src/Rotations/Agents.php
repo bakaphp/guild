@@ -35,7 +35,7 @@ class Agents
      * @param integer $hits
      * @return LeadsRotationsAgents
      */
-    public static function create(ModelsRotations $rotation, UserInterface $user, Receivers $receiver, float $percent, int $hits) : LeadsRotationsAgents
+    public static function create(ModelsRotations $rotation, UserInterface $user, Receivers $receiver, float $percent, int $hits = 0) : LeadsRotationsAgents
     {
         $agent = new LeadsRotationsAgents();
         $agent->rotations_id = $rotation->getId();
@@ -94,5 +94,44 @@ class Agents
         $agent->saveOrFail($data, $updateFields);
 
         return $agent;
+    }
+
+    /**
+     * Get current agent with rotations calculations
+     *
+     * @param ModelsRotations $rotation
+     * @return LeadsRotationsAgents
+     */
+    public static function getAgent(ModelsRotations $rotation) : LeadsRotationsAgents
+    {
+        $total = self::getCountHits($rotation);
+        $agents = $rotation->getAgents();
+
+        if ($total > 0) {
+            foreach ($agents as $agent) {
+                $calculatedPercent = ($agent->hits / $total) * 100;
+                if ($calculatedPercent < $agent->percent) {
+                    return $agent;
+                }
+            }
+        }
+
+        return $agents[0];
+    }
+
+
+    /**
+     * Get the total count of the rotations agents
+     *
+     * @param ModelsRotations $rotation
+     * @return integer
+     */
+    public static function getCountHits(ModelsRotations $rotation) : int
+    {
+        return (int) LeadsRotationsAgents::sum([
+            'column' => 'hits',
+            'conditions' => 'rotations_id = ?0',
+            'bind' => [$rotation->getId()],
+        ]);
     }
 }

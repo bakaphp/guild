@@ -26,7 +26,7 @@ class Rotations extends BaseModel
             'rotations_id',
             [
                 'reusable' => true,
-                'alias' => 'rotationAgents',
+                'alias' => 'agents',
             ]
         );
 

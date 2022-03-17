@@ -27,7 +27,7 @@ class AgentsCest extends BaseIntegration
         $user = new Users();
         $user->phone_number = "809-909-8811";
 
-        $agent = Agents::create($this->rotations, $user, $this->dataBuilder->createReceiver(), 0.5, 3);
+        $agent = Agents::create($this->rotations, $user, $this->dataBuilder->createReceiver(), 0.5);
 
         $this->agent = $agent;
 
@@ -59,14 +59,29 @@ class AgentsCest extends BaseIntegration
             $this->rotations,
             new Users(),
             $this->dataBuilder->createReceiver(),
-            0.5,
-            3
+            0.5
         );
 
         $agent = Agents::getById($agent->getId(), new Users());
 
         $I->assertInstanceOf(LeadsRotationsAgents::class, $agent);
     }
+
+    /**
+     * Test get agent by calculation
+     *
+     * @param IntegrationTester $I
+     * @return void
+     */
+    public function testGetCurrentAgent(IntegrationTester $I) : void
+    {
+        $agent = Agents::getAgent($this->rotations);
+
+        $I->assertInstanceOf(LeadsRotationsAgents::class, $agent);
+        $I->assertNotNull($agent->getId());
+    }
+
+
 
     /**
      * Update agents data
@@ -80,14 +95,12 @@ class AgentsCest extends BaseIntegration
             $this->rotations,
             new Users(),
             $this->dataBuilder->createReceiver(),
-            0.5,
-            3
+            0.5
         );
 
         $data = [
             'phone' => '1-998-093-2344',
-            'percent' => 0.54,
-            'hits' => 3
+            'percent' => 0.9,
         ];
 
         $agent = Agents::updateAgent($agent, $data);

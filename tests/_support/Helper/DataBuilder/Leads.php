@@ -27,7 +27,7 @@ class Leads
     {
         $rotation = DataBuilderRotations::createRotation();
         $receiver = DataBuilderReceivers::createReceiver();
-        $agent = Agents::create($rotation, new Users(), $receiver, 1.0, 3);
+        $agent = Agents::create($rotation, new Users(), $receiver, 1.0);
 
         $lead = LeadsMethods::create(
             new Users(),
