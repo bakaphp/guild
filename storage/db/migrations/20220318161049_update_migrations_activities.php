@@ -24,7 +24,6 @@ class UpdateMigrationsActivities extends Phinx\Migration\AbstractMigration
             ])
             ->changeColumn('description', 'text', [
                 'null' => true,
-                'default' => null,
                 'limit' => 65535,
                 'collation' => 'utf8mb4_unicode_520_nopad_ci',
                 'encoding' => 'utf8mb4',
@@ -42,7 +41,6 @@ class UpdateMigrationsActivities extends Phinx\Migration\AbstractMigration
             ])
             ->changeColumn('apps_id', 'integer', [
                 'null' => true,
-                'default' => null,
                 'limit' => MysqlAdapter::INT_REGULAR,
                 'after' => 'id',
             ])
