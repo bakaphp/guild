@@ -11,7 +11,7 @@ class Participants
     /**
      * Create a new Participants Types
      *
-     * @return ModelsParticipants
+     * @return ParticipantsTypes
      */
     public static function createParticipantsType() : ParticipantsTypes
     {
