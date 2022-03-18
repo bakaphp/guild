@@ -75,6 +75,12 @@ jobs:
       - name: Update Composer dependencies
         run: composer update --prefer-dist --no-suggest
       
+      - name: Setup Env Variable
+        run: cp ./storage/ci/.env.example .env
+      
+      - name: Setup Phinx Variable
+        run: cp ./storage/ci/phinx.php.example phinx.php
+
       - name: Phinx migrate 
         run: vendor/bin/phinx migrate 
 
