@@ -1,6 +1,7 @@
 <?php
 namespace Helper;
 
+use Helper\DataBuilder\Activities as DataBuilderActivities;
 use Helper\DataBuilder\Leads as DataBuilderLeads;
 use Helper\DataBuilder\Organizations as DataBuilderOrganizations;
 use Helper\DataBuilder\Participants as DataBuildersParticipants;
@@ -8,7 +9,9 @@ use Helper\DataBuilder\Peoples as DataBuilderPeoples;
 use Helper\DataBuilder\Pipelines as DataBuilderPipelines;
 use Helper\DataBuilder\Receivers as DataBuilderReceivers;
 use Helper\DataBuilder\Rotations as DataBuilderRotations;
+use Kanvas\Guild\Activities\Models\Activities;
 use Kanvas\Guild\Contracts\UserInterface;
+use Kanvas\Guild\Activities\Models\ActivitiesTypes;
 use Kanvas\Guild\Leads\Models\Leads as ModelsLeads;
 use Kanvas\Guild\Leads\Models\Receivers as ModelsReceivers;
 use Kanvas\Guild\Leads\Models\Source;
@@ -136,8 +139,29 @@ class DataBuilder
         return DataBuilderLeads::createLeadSource();
     }
 
+    /**
+     * Create participants type for testing
+     *
+     * @return ParticipantsTypes
+     */
     public function createParticipantsType() : ParticipantsTypes
     {
         return DataBuildersParticipants::createParticipantsType();
+    }
+
+    /**
+     * Create activities type for testing
+     *
+     * @return ActivitiesTypes
+     */
+    public function createActivitiesType() : ActivitiesTypes
+    {
+        return DataBuilderActivities::createActivitiesType();
+    }
+
+
+    public function createActivities() : Activities
+    {
+        return DataBuilderActivities::createActivities();
     }
 }
