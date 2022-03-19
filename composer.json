@@ -1,9 +1,9 @@
 {
-    "name": "kanvas/crm",
-    "description": "Kanvas App Content CRM Subsystem",
+    "name": "kanvas/guild",
+    "description": "Kanvas Guild is a Customer relationship management package.",
     "keywords": [
         "kanvas",
-        "Crm"
+        "guild"
     ],
     "license": "MIT",
     "authors": [
