@@ -87,7 +87,7 @@ class Activities
      * @param string $description
      * @return ActivitiesTypes
      */
-    public static function createType(UserInterface $user, string $name, string $description = '', ?int $appId = null) : ActivitiesTypes
+    public static function createType(UserInterface $user, string $name, string $description = '', ?int $appId = 0) : ActivitiesTypes
     {
         $newType = new ActivitiesTypes();
         $newType->name = $name;
