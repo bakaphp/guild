@@ -46,8 +46,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Kanvas\\Moderation\\": "src/",
-            "Kanvas\\Moderation\\Tests\\Support\\":"tests/_support"
+            "Kanvas\\Guild\\": "src/",
+            "Kanvas\\Guild\\Tests\\Support\\":"tests/_support"
 
         }
     },
