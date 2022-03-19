@@ -6,21 +6,6 @@ class PeoplesContactAddressMigrations extends Phinx\Migration\AbstractMigration
 {
     public function change()
     {
-        $this->table('leads_receivers', [
-                'id' => false,
-                'primary_key' => ['id'],
-                'engine' => 'InnoDB',
-                'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
-                'comment' => '',
-                'row_format' => 'DYNAMIC',
-            ])
-            ->addIndex(['rotations_id'], [
-                'name' => 'FK_leads_receivers_rotations',
-                'unique' => false,
-            ])
-            ->removeIndexByName("leads_recievers_rotations_FK")
-            ->save();
         $this->table('peoples_address', [
                 'id' => false,
                 'primary_key' => ['id'],
