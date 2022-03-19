@@ -20,7 +20,8 @@
     "require": {
         "php": ">= 7.4",
         "ext-phalcon": ">=4",
-        "kanvas/content": "^0.1"
+        "kanvas/content": "^0.1",
+        "baka/baka": "0.7.x-dev"
     },
     "require-dev": {
         "codeception/codeception": "^4.1",
