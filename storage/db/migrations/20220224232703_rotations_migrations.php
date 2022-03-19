@@ -157,10 +157,6 @@ class RotationsMigrations extends Phinx\Migration\AbstractMigration
                 'limit' => MysqlAdapter::INT_TINY,
                 'after' => 'updated_at',
             ])
-            ->addIndex(['rotations_id'], [
-                'name' => 'rotations_leads_rotations_agents_FK',
-                'unique' => false,
-            ])
             ->addForeignKey(
                 'rotations_id',
                 'rotations',
