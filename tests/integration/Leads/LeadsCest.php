@@ -64,4 +64,62 @@ class LeadsCest extends BaseIntegration
         $I->assertInstanceOf(ModelLeadTypes::class, $newType);
         $I->assertNotNull($newType->getId());
     }
+
+    /**
+     * Test get all leads
+     *
+     * @param IntegrationTester $I
+     * @return void
+     */
+    public function testGetAllLeads(IntegrationTester $I) : void
+    {
+        $this->dataBuilder->createLead();
+
+        $leads = Leads::getAll(new Users())->toArray();
+
+        $I->assertTrue(isset($leads[0]['id']));
+    }
+
+    /**
+     * Test get lead by id
+     *
+     * @param IntegrationTester $I
+     * @return void
+     */
+    public function testGetLeadTypeById(IntegrationTester $I) : void
+    {
+        $newLead = $this->dataBuilder->createLead();
+        $lead = Leads::getById($newLead->getId(), new Users());
+
+        $I->assertEquals($lead->getId(), $newLead->getId());
+    }
+
+        /**
+     * Test get all leads
+     *
+     * @param IntegrationTester $I
+     * @return void
+     */
+    public function testGetAllLeadsTypes(IntegrationTester $I) : void
+    {
+        $this->dataBuilder->createLeadType();
+
+        $type = LeadsTypes::getAll(new Users())->toArray();
+
+        $I->assertTrue(isset($type[0]['id']));
+    }
+
+    /**
+     * Test get lead type by id
+     *
+     * @param IntegrationTester $I
+     * @return void
+     */
+    public function testGetLeadById(IntegrationTester $I) : void
+    {
+        $newType = $this->dataBuilder->createLeadType();
+        $type = LeadsTypes::getById($newType->getId(), new Users());
+
+        $I->assertEquals($type->getId(), $newType->getId());
+    }
 }
