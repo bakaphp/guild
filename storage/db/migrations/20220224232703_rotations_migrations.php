@@ -165,7 +165,7 @@ class RotationsMigrations extends Phinx\Migration\AbstractMigration
                 'rotations_id',
                 'rotations',
                 'id',
-                ['constraint' => 'FK_pipelines_stages_pipeline'],
+                ['constraint' => 'rotations_leads_rotations_agents_FK'],
                 ['delete' => 'NO_ACTION', 'update' => 'NO_ACTION']
             )
             ->create();

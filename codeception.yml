@@ -45,9 +45,9 @@ modules:
       cleanup: false
       savepoints: false
     DB:
-      dsn: 'mysql:host=%CRM_MYSQL_HOST%;dbname=%CRM_MYSQL_NAME%'
-      user: '%CRM_MYSQL_USER%'
-      password: '%CRM_MYSQL_PASS%'
+      dsn: 'mysql:host=%GUILD_MYSQL_HOST%;dbname=%GUILD_MYSQL_NAME%'
+      user: '%GUILD_MYSQL_USER%'
+      password: '%GUILD_MYSQL_PASS%'
       dump: 'tests/_data/dump.sql'
       populate: false
       cleanup: false

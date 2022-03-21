@@ -22,10 +22,10 @@ class Database implements ServiceProviderInterface
             'dbCRM',
             function () {
                 $options = [
-                    'host' => getenv('CRM_MYSQL_HOST'),
-                    'username' => getenv('CRM_MYSQL_USER'),
-                    'password' => getenv('CRM_MYSQL_PASS'),
-                    'dbname' => getenv('CRM_MYSQL_NAME'),
+                    'host' => getenv('GUILD_MYSQL_HOST'),
+                    'username' => getenv('GUILD_MYSQL_USER'),
+                    'password' => getenv('GUILD_MYSQL_PASS'),
+                    'dbname' => getenv('GUILD_MYSQL_NAME'),
                     'charset' => 'utf8',
                     'options' => [PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING]
                 ];
