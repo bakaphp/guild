@@ -39,30 +39,58 @@ Leads
 ### Create a new lead
 
 ```php
-<?php
-use kanvas\Guild\Leads;
+/**
+ * Create a new Lead
+ *
+ * @param UserInterface $user
+ * @param string $title
+ * @param ModelsStages $pipelineStage
+ * @param LeadsRotationsAgents $agent
+ * @param Organizations $organization
+ * @param Types $leadType
+ * @param Status $leadStatus
+ * @param Source $leadSource
+ * @param boolean $isDuplicate
+ * @param string $description
+ * @return ModelsLeads
+ */
 
-class Messages implements BaseModel
-{
-    public function createLead()
-    {
-        $leads = Leads::create(array $data)
-    }
-}
+    $leads = Leads::create(
+        $user,
+        $title,
+        $modelPipelineStage,
+        $leadRotationsAgent,
+        $organization,
+        $leadType,
+        $leadStatus,
+        $leadSource,
+        $isDuplicate,
+        $descriptions
+    );
 
 ```
 ### Create a new Lead Attempt
 
 ```php
 
-class Messages implements BaseModel
-{
-    public function createLead()
-    {
-        Leads::attempt($data, $this->request, 'API');
-        $leads = Leads::create(array $data)
-    }
-}
+$data = [
+    'request' => 'Request Data',
+    'ip' => '123.456.789',
+    'header' => 'Request Header',
+    'source' => 'Source',
+    'public_key' => 'Key',
+    'processed' => 0,
+]
+
+/**
+ * Create a new lead attempt
+ *
+ * @param UserInterface $user
+ * @param array $data
+ * @param Leads|null $lead
+ * @return ModelAttempts
+ */
+Leads::attempt($user, $data, $lead);
 ```
 
 
@@ -70,16 +98,11 @@ class Messages implements BaseModel
 
 ```php
 
-// $data an array with the data that gonna be updated
-$lead = Leads::updateById(3, $data)
+// find a lead by id
 
-```
-OR
-
-```php
-
-// Update the data from the model after the fetch
-$lead = Leads::getById(3)->update($data)
+$lead = Leads::getById(4, $user);
+$lead->name = 'name';
+$lead->saveOrFail();
 
 ```
 

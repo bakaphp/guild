@@ -9,7 +9,6 @@ use IntegrationTester;
 use Kanvas\Guild\Activities\Activities;
 use Kanvas\Guild\Activities\Models\Activities as ModelsActivities;
 use Kanvas\Guild\Activities\Models\ActivitiesTypes;
-use Kanvas\Guild\Deals\Deals;
 use Kanvas\Guild\Tests\Support\BaseIntegration;
 use Kanvas\Guild\Tests\Support\Models\Users;
 
@@ -62,7 +61,6 @@ class ActivitiesCest extends BaseIntegration
         $I->assertEquals($data['start_date'], $activityEdited->start_date);
     }
 
-
     /**
      * Test create types
      *
@@ -78,5 +76,34 @@ class ActivitiesCest extends BaseIntegration
 
         $I->assertInstanceOf(ActivitiesTypes::class, $type);
         $I->assertNotNull($type->getId());
+    }
+
+    /**
+     * Test get all activities
+     *
+     * @param IntegrationTester $I
+     * @return void
+     */
+    public function testGetAllActivities(IntegrationTester $I) : void
+    {
+        $this->dataBuilder->createActivities();
+
+        $activities = Activities::getAll(new Users())->toArray();
+
+        $I->assertTrue(isset($activities[0]['id']));
+    }
+
+    /**
+     * Test get activity by id
+     *
+     * @param IntegrationTester $I
+     * @return void
+     */
+    public function testGetActivityById(IntegrationTester $I) : void
+    {
+        $newActivity = $this->dataBuilder->createActivities();
+        $activity = Activities::getById($newActivity->getId(), new Users());
+
+        $I->assertEquals($activity->getId(), $newActivity->getId());
     }
 }

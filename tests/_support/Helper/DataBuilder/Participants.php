@@ -1,9 +1,8 @@
 <?php
 namespace Helper\DataBuilder;
 
-use Kanvas\Guild\Participants\Models\Types as ParticipantsTypes;
-use Kanvas\Guild\Participants\Models\Participants as ModelsParticipants;
-use Kanvas\Guild\Participants\Participants as ParticipantsMethods;
+use Kanvas\Guild\Participants\Models\Types;
+use Kanvas\Guild\Participants\Types as ParticipantsTypes;
 use Kanvas\Guild\Tests\Support\Models\Users;
 
 class Participants
@@ -11,10 +10,10 @@ class Participants
     /**
      * Create a new Participants Types
      *
-     * @return ParticipantsTypes
+     * @return Types
      */
-    public static function createParticipantsType() : ParticipantsTypes
+    public static function createParticipantsType() : Types
     {
-        return ParticipantsMethods::createParticipantType(new Users(), 'Owner');
+        return ParticipantsTypes::create(new Users(), 'Owner');
     }
 }

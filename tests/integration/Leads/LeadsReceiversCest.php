@@ -57,4 +57,33 @@ class LeadsReceiversCest extends BaseIntegration
         $I->assertEquals($data['name'], $updateReceiver->name);
         $I->assertEquals($rotation->getId(), $updateReceiver->rotations_id);
     }
+
+    /**
+     * Test get all receiver
+     *
+     * @param IntegrationTester $I
+     * @return void
+     */
+    public function testGetAllReceivers(IntegrationTester $I) : void
+    {
+        $this->dataBuilder->createReceiver();
+
+        $receiver = Receivers::getAll(new Users())->toArray();
+
+        $I->assertTrue(isset($receiver[0]['id']));
+    }
+
+    /**
+     * Test get receiver by id
+     *
+     * @param IntegrationTester $I
+     * @return void
+     */
+    public function testGetReceiverById(IntegrationTester $I) : void
+    {
+        $newReceivers = $this->dataBuilder->createReceiver();
+        $receiver = Receivers::getById($newReceivers->getId(), new Users());
+
+        $I->assertEquals($receiver->getId(), $newReceivers->getId());
+    }
 }
