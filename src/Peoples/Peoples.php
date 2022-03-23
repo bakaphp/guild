@@ -69,24 +69,6 @@ class Peoples
     }
 
     /**
-     * Update organization
-     *
-     * @param ModelsPeoples $organization
-     * @param array $data
-     * @return ModelsPeoples
-     */
-    public static function update(ModelsPeoples $organization, array $data) : ModelsPeoples
-    {
-        $updateFields = [
-            'name',
-        ];
-
-        $organization->saveOrFail($data, $updateFields);
-
-        return $organization;
-    }
-
-    /**
      * Create a new address
      *
      * @param ModelsPeoples $peoples

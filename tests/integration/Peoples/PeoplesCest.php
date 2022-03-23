@@ -70,13 +70,11 @@ class PeoplesCest
      */
     public function testUpdatePeople(IntegrationTester $I) : void
     {
-        $updateData = [
-            'name' => 'Casa actualizada',
-        ];
+        $name = 'Casa actualizada';
 
-        $people = Peoples::update($this->people, $updateData);
-
-        $I->assertEquals($people->name, $this->people->name);
+        $this->people->name = $name;
+        $this->people->saveOrFail();
+        $I->assertEquals($name, $this->people->name);
     }
 
     /**

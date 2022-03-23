@@ -98,14 +98,14 @@ class AgentsCest extends BaseIntegration
             0.5
         );
 
-        $data = [
-            'phone' => '1-998-093-2344',
-            'percent' => 0.9,
-        ];
+        $phone = '1-998-093-2344';
+        $percent = 0.9;
 
-        $agent = Agents::updateAgent($agent, $data);
+        $agent->phone = $phone;
+        $agent->percent = $percent;
+        $agent->saveOrFail();
 
-        $I->assertEquals($data['phone'], $agent->phone);
+        $I->assertEquals($agent->phone, $phone);
     }
 
     /**

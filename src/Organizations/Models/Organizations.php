@@ -6,6 +6,7 @@ namespace Kanvas\Guild\Organizations\Models;
 
 use Baka\Database\Behaviors\Uuid;
 use Kanvas\Guild\BaseModel;
+use Kanvas\Guild\Organizations\Organizations as OrganizationsMethods;
 use Kanvas\Guild\Peoples\Models\Peoples;
 use Phalcon\Utils\Slug;
 
@@ -60,5 +61,16 @@ class Organizations extends BaseModel
     public function beforeSave() : void
     {
         $this->slug = Slug::generate($this->name);
+    }
+
+    /**
+     * Add a new people to an organization
+     *
+     * @param Peoples $people
+     * @return OrganizationsPeoples
+     */
+    public function addPeople(Peoples $people) : OrganizationsPeoples
+    {
+        return OrganizationsMethods::addPeople($this, $people);
     }
 }
