@@ -6,8 +6,6 @@ namespace Kanvas\Guild\Rotations;
 
 use Baka\Contracts\Database\ModelInterface;
 use Kanvas\Guild\Contracts\UserInterface;
-use Kanvas\Guild\Pipelines\Models\Pipelines as ModelsPipelines;
-use Kanvas\Guild\Rotations\Models\LeadsRotationsAgents;
 use Kanvas\Guild\Rotations\Models\Rotations as ModelsRotations;
 use Kanvas\Guild\Traits\Searchable as SearchableTrait;
 

@@ -76,7 +76,7 @@ class Pipelines
         $pipelineStage->has_rotting_days = $hasRotting;
         $pipelineStage->rotting_days = $rottingDays;
         $pipelineStage->saveOrFail();
-        
+
         return $pipelineStage;
     }
 

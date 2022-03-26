@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Kanvas\Guild\Leads\Models;
 
 use Baka\Database\Behaviors\Uuid;
+use Kanvas\Guild\Activities\Models\Activities;
 use Kanvas\Guild\BaseModel;
+use Kanvas\Guild\Deals\Models\Deals;
 use Kanvas\Guild\Participants\Models\Participants as ModelParticipants;
 use Kanvas\Guild\Participants\Models\Types as ParticipantsTypes;
 use Kanvas\Guild\Participants\Participants;
@@ -38,6 +40,26 @@ class Leads extends BaseModel
 
         $this->addBehavior(
             new Uuid()
+        );
+
+        $this->hasOne(
+            'id',
+            Deals::class,
+            'leads_id',
+            [
+                'reusable' => true,
+                'alias' => 'deal'
+            ]
+        );
+
+        $this->hasMany(
+            'id',
+            Activities::class,
+            'leads_id',
+            [
+                'reusable' => true,
+                'alias' => 'deal'
+            ]
         );
     }
 

@@ -83,7 +83,7 @@ class Agents
      * @param array $data
      * @return LeadsRotationsAgents
      */
-    public static function updateAgent(LeadsRotationsAgents $agent, array $data) : LeadsRotationsAgents
+    public static function update(LeadsRotationsAgents $agent, array $data) : LeadsRotationsAgents
     {
         $updateFields = [
             'phone',
@@ -118,7 +118,6 @@ class Agents
 
         return $agents[0];
     }
-
 
     /**
      * Get the total count of the rotations agents

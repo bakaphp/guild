@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Kanvas\Guild\Leads;
 
 use Baka\Contracts\Database\ModelInterface;
+use Baka\Database\Model;
 use Kanvas\Guild\Contracts\UserInterface;
 use Kanvas\Guild\Leads\Models\Leads as ModelsLeads;
 use Kanvas\Guild\Leads\Models\Source;
@@ -70,21 +71,26 @@ class Leads
     }
 
     /**
-     * Update leads type
+     * Get Leads by status
      *
-     * @param Types $leadType
-     * @param array $data
-     * @return Types
+     * @param integer $statusId
+     * @param UserInterface $user
+     * @param integer $page
+     * @param integer $limit
+     * @return ResultsetInterface
      */
-    public static function update(Types $leadType, array $data) : Types
+    public static function getByStatus(int $statusId, UserInterface $user, int $page = 1, int $limit = 10) : ResultsetInterface
     {
-        $updateFields = [
-            'name',
-            'description',
-        ];
+        $offset = ($page - 1) * $limit;
 
-        $leadType->saveOrFail($data, $updateFields);
-
-        return $leadType;
+        return ModelsLeads::find([
+            'conditions' => 'companies_id = :company_id: AND  status = :status: AND is_deleted = 0',
+            'bind' => [
+                'company_id' => $user->currentCompanyId(),
+                'status' => $statusId
+            ],
+            'limit' => $limit,
+            'offset' => $offset
+        ]);
     }
 }
