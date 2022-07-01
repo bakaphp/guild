@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Kanvas\Guild\Leads;
 
 use Baka\Contracts\Database\ModelInterface;
-use Baka\Database\Model;
+use Exception;
 use Kanvas\Guild\Contracts\UserInterface;
 use Kanvas\Guild\Leads\Models\Leads as ModelsLeads;
 use Kanvas\Guild\Leads\Models\Source;
@@ -16,6 +16,7 @@ use Kanvas\Guild\Peoples\Models\Peoples;
 use Kanvas\Guild\Pipelines\Models\Stages as ModelsStages;
 use Kanvas\Guild\Rotations\Models\LeadsRotationsAgents;
 use Kanvas\Guild\Traits\Searchable as SearchableTrait;
+use Kanvas\Guild\Leads\Models\Receivers as ModelsReceivers;
 
 class Leads
 {
@@ -32,40 +33,62 @@ class Leads
     }
 
     /**
-     * Create a new Lead
+     * Create a new lead
      *
-     * @param UserInterface $user
-     * @param string $title
-     * @param ModelsStages $pipelineStage
-     * @param LeadsRotationsAgents $agent
-     * @param Organizations $organization
-     * @param Types $leadType
-     * @param Status $leadStatus
-     * @param Source $leadSource
-     * @param boolean $isDuplicate
-     * @param string $description
-     * @return ModelsLeads
-     */
-    public static function create(UserInterface $user, string $title, ModelsStages $pipelineStage, LeadsRotationsAgents $agent, Peoples $people, Organizations $organization, Types $leadType, Status $leadStatus, Source $leadSource, bool $isDuplicate, string $description = '') : ModelsLeads
+    * @param array $data Array containing the necessary params.
+    *    $data = [
+    *      'title'               => (string) Title of the lead. Required
+    *      'description'         => (string) Description of the lead.
+    *      'stage'               => (ModelsStages) The initial stage of the lead pipeline. Required.
+    *      'receiver'            => (ModelsReceivers) The receiver of the lead. Required.
+    *      'agent'               => (LeadsRotationsAgents) The agent owner of the lead. Required.
+    *      'people'              => (Peoples) The people entity related to the lead.
+    *      'organization'        => (Organizations) The organization entity related to the lead.
+    *      'lead_type'           => (ModelTypes) Lead type. Required.
+    *      'lead_status'         => (ModelStatus) The current lead status. Required.
+    *      'lead_source'         => (ModelSource) The lead initial source.
+    *      'is_duplicate'        => (boolean) Check if the lead is a duplicate. Default: false.
+    *    ]
+    * @param UserInterface $user
+    * @return ModelsLeads
+    */
+    public static function create(array $data, UserInterface $user) : ModelsLeads
     {
+
+        $properties = [
+            'stage' => ModelsStages::class,
+            'receiver' => ModelsReceivers::class,
+            'agent' => LeadsRotationsAgents::class,
+            'people' => Peoples::class,
+            'organization' => Organizations::class,
+            'lead_type' => Types::class,
+            'lead_status' => Status::class,
+            'lead_source' => Source::class,
+            'title' => 'string',
+            'description' => 'string',
+            'is_duplicate' => 'boolean'
+        ];
+
+        $data = self::validateData($properties, $data);
+
         $newLead = new ModelsLeads();
         $newLead->users_id =  $user->getId();
         $newLead->companies_id =  $user->currentCompanyId();
-        $newLead->leads_owner_id = $agent->users_id;
-        $newLead->leads_receivers_id =  $agent->receivers_id;
-        $newLead->leads_status_id =  $leadStatus->getId();
-        $newLead->leads_sources_id =  $leadSource->getId();
-        $newLead->leads_types_id =  $leadType->getId();
-        $newLead->pipeline_stage_id =  $pipelineStage->getId();
-        $newLead->people_id =  $people->getId();
-        $newLead->organization_id =  $organization->getId();
-        $newLead->title = $title;
-        $newLead->description = $description ?? '';
-        $newLead->is_duplicated = (int)$isDuplicate;
+        $newLead->leads_owner_id = $data['agent']->users_id;
+        $newLead->leads_receivers_id =  $data['receiver']->getId();
+        $newLead->leads_status_id =  $data['lead_status']->getId();
+        $newLead->leads_sources_id =  $data['lead_source']->getId() ?? 0;
+        $newLead->leads_types_id =  $data['lead_type']->getId();
+        $newLead->pipeline_stage_id =  $data['stage']->getId();
+        $newLead->people_id =  $data['people'] ? $data['people']->getId() : null;
+        $newLead->organization_id =  $data['organization'] ? $data['organization']->getId() : null;
+        $newLead->title = $data['title'];
+        $newLead->description = $data['description'] ?? '';
+        $newLead->is_duplicated = (int)$data['is_duplicate'] ?? 0;
         $newLead->saveOrFail();
 
-        $agent->getReceiver()->incrementTotalLeads();
-        $agent->increaseHit();
+        $data['receiver']->incrementTotalLeads();
+        $data['agent']->increaseHit();
 
         return $newLead;
     }
@@ -92,5 +115,28 @@ class Leads
             'limit' => $limit,
             'offset' => $offset
         ]);
+    }
+
+    /**
+     * Validate data for leads
+     *
+     * @param array $validation
+     * @param array $data
+     * @return array
+     */
+    public static function validateData(array $validation, array $data): array
+    {
+        foreach ($validation as $key => $type) {
+            if (isset($data[$key]) && gettype($data[$key] == $type) && $data[$key] instanceof $type) {
+                continue;
+            }
+            if (isset($data[$key]) && gettype($data[$key]) !== $type) {
+                throw new Exception("{$key} must be an instance of {$type}");
+            } elseif(isset($data[$key]) && gettype($data[$key]) === $type) {
+                continue;
+            }
+            $data[$key] = null;
+        }
+        return $data;
     }
 }
