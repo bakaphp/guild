@@ -29,18 +29,22 @@ class Leads
         $receiver = DataBuilderReceivers::createReceiver();
         $agent = Agents::create($rotation, new Users(), $receiver, 1.0);
 
+        $data = [
+            'title' => "Lead No.". rand(1, 130),
+            'description' => 'Test description',
+            'stage' => DataBuilderPipelines::createPipelineStage(),
+            'receiver' =>  $receiver,
+            'agent' => $agent,
+            'people' => DataBuilderPeoples::createPeople(),
+            'organization' => DataBuilderOrganizations::createOrganization(),
+            'lead_type' => self::createLeadType(),
+            'lead_status' => self::createLeadStatus(),
+            'lead_source' => self::createLeadSource(),
+        ];
+
         $lead = LeadsMethods::create(
-            new Users(),
-            "Lead No.". rand(1, 130),
-            DataBuilderPipelines::createPipelineStage(),
-            $agent,
-            DataBuilderPeoples::createPeople(),
-            DataBuilderOrganizations::createOrganization(),
-            self::createLeadType(),
-            self::createLeadStatus(),
-            self::createLeadSource(),
-            false,
-            "Test description"
+            $data,
+            new Users()
         );
 
         return $lead;
