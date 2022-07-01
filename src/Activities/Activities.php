@@ -8,7 +8,7 @@ use Baka\Contracts\Database\ModelInterface;
 use Kanvas\Guild\Activities\Models\Activities as ModelsActivities;
 use Kanvas\Guild\Contracts\UserInterface;
 use Kanvas\Guild\Activities\Models\ActivitiesTypes;
-use Kanvas\Guild\Leads\Models\Leads;
+use Kanvas\Guild\Contracts\LeadsInterface;
 use Kanvas\Guild\Traits\Searchable as SearchableTrait;
 
 class Activities
@@ -32,13 +32,13 @@ class Activities
      * @param string $title
      * @param string $start
      * @param string $end
-     * @param Leads $lead
+     * @param LeadsInterface $lead
      * @param ActivitiesTypes $type
      * @param boolean $isComplete
      * @param integer $appId
      * @return ModelsActivities
      */
-    public static function create(UserInterface $user, string $title, string $start, string $end, Leads $lead, ActivitiesTypes $type, bool $isComplete = false, int $appId = 0) : ModelsActivities
+    public static function create(UserInterface $user, string $title, string $start, string $end, LeadsInterface $lead, ActivitiesTypes $type, bool $isComplete = false, int $appId = 0) : ModelsActivities
     {
         $activity = new ModelsActivities();
         $activity->companies_id = $user->currentCompanyId();

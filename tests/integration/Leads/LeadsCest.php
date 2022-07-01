@@ -30,18 +30,22 @@ class LeadsCest extends BaseIntegration
         $rotation = $receiver->getRotation();
         $agent = Agents::create($rotation, new Users(), $receiver, 1.0, 3);
 
+        $data = [
+            'title' => 'Title',
+            'stage' => $this->dataBuilder->createPipelineStage(),
+            'receiver' =>  $receiver,
+            'agent' => $agent,
+            'people' => $this->dataBuilder->createPeople(),
+            'organization' => $this->dataBuilder->createOrganization(),
+            'lead_type' => $this->dataBuilder->createLeadType(),
+            'lead_status' => $this->dataBuilder->createLeadStatus(),
+            'lead_source' => $this->dataBuilder->createLeadSource(),
+            'description' => 'Description'
+        ];
+
         $newLead = Leads::create(
+            $data,
             new Users(),
-            'Title',
-            $this->dataBuilder->createPipelineStage(),
-            $agent,
-            $this->dataBuilder->createPeople(),
-            $this->dataBuilder->createOrganization(),
-            $this->dataBuilder->createLeadType(),
-            $this->dataBuilder->createLeadStatus(),
-            $this->dataBuilder->createLeadSource(),
-            false,
-            'Lead created for testing'
         );
 
         $I->assertInstanceOf(ModelsLeads::class, $newLead);
@@ -122,4 +126,6 @@ class LeadsCest extends BaseIntegration
 
         $I->assertEquals($type->getId(), $newType->getId());
     }
+
+    // public function generateData()
 }

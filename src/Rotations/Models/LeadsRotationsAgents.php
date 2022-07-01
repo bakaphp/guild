@@ -10,7 +10,7 @@ use Kanvas\Guild\Leads\Models\Receivers;
 class LeadsRotationsAgents extends BaseModel
 {
     public int $rotations_id;
-    public int $receivers_id;
+    public ?int $receivers_id = null;
     public int $companies_id;
     public int $users_id;
     public ?string $phone;
