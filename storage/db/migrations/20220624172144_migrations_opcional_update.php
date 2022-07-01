@@ -184,21 +184,6 @@ class MigrationsOpcionalUpdate extends Phinx\Migration\AbstractMigration
                 'after' => 'updated_at',
             ])
             ->save();
-        $this->table('pipelines_stages', [
-                'id' => false,
-                'primary_key' => ['id'],
-                'engine' => 'InnoDB',
-                'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
-                'comment' => '',
-                'row_format' => 'DYNAMIC',
-            ])
-            ->addIndex(['pipelines_id'], [
-                'name' => 'FK_pipelines_stages_pipeline',
-                'unique' => false,
-            ])
-            ->removeIndexByName("FK_pipelines_stages_pipelines")
-            ->save();
         $this->table('leads_participants_types', [
                 'id' => false,
                 'primary_key' => ['id'],
