@@ -146,4 +146,21 @@ class Pipelines
 
         return $pipelines;
     }
+
+    /**
+     * Get default pipeline for user company
+     *
+     * @param UserInterface $user
+     * @return ModelsPipelines
+     */
+    public static function getDefaultPipeline(UserInterface $user) : ModelsPipelines
+    {
+        return ModelsPipelines::findFirst([
+            'conditions' => 'companies_id = :companies_id: AND is_default = :is_default: AND is_deleted = 0',
+            'bind' => [
+                'companies_id' => $user->currentCompanyId(),
+                'is_default' => 1
+            ]
+        ]);
+    }
 }
