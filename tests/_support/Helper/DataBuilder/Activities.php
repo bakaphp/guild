@@ -6,6 +6,7 @@ use Kanvas\Guild\Activities\Activities as ActivitiesMethods;
 use Kanvas\Guild\Activities\Models\Activities as ModelsActivities;
 use Kanvas\Guild\Activities\Models\ActivitiesTypes;
 use Helper\DataBuilder\Leads as DataBuilderLeads;
+use Kanvas\Guild\Activities\Models\ActivitiesStatus;
 use Kanvas\Guild\Tests\Support\Models\Users;
 
 class Activities
@@ -24,6 +25,18 @@ class Activities
     }
 
     /**
+     * Create a new activities status
+     *
+     * @return ActivitiesStatus
+     */
+    public static function createActivitiesStatus() : ActivitiesStatus
+    {
+        $name = "Pending";
+
+        return ActivitiesMethods::createStatus(new Users(), $name);
+    }
+
+    /**
      * Create a new Activity type for testing.
      *
      * @return ModelsActivities
@@ -37,7 +50,8 @@ class Activities
             Carbon::now()->addDay()->format('Y-m-d'),
             DataBuilderLeads::createLead(),
             self::createActivitiesType(),
-            false
+            self::createActivitiesStatus(),
+            'Descriptions'
         );
     }
 }

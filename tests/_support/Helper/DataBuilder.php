@@ -10,6 +10,7 @@ use Helper\DataBuilder\Pipelines as DataBuilderPipelines;
 use Helper\DataBuilder\Receivers as DataBuilderReceivers;
 use Helper\DataBuilder\Rotations as DataBuilderRotations;
 use Kanvas\Guild\Activities\Models\Activities;
+use Kanvas\Guild\Activities\Models\ActivitiesStatus;
 use Kanvas\Guild\Contracts\UserInterface;
 use Kanvas\Guild\Activities\Models\ActivitiesTypes;
 use Kanvas\Guild\Leads\Models\Leads as ModelsLeads;
@@ -159,9 +160,23 @@ class DataBuilder
         return DataBuilderActivities::createActivitiesType();
     }
 
-
+    /**
+     * Create activities
+     *
+     * @return Activities
+     */
     public function createActivities() : Activities
     {
         return DataBuilderActivities::createActivities();
+    }
+
+    /**
+     * Create activities status for testing
+     *
+     * @return ActivitiesStatus
+     */
+    public function createActivitiesStatus() : ActivitiesStatus
+    {
+        return DataBuilder::createActivitiesStatus();
     }
 }
