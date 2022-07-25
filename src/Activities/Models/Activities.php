@@ -20,12 +20,21 @@ class Activities extends BaseModel
     public string $start_date;
     public string $end_date;
     public int $activity_type_id;
-    public int $is_completed;
+    public int $activities_status_id;
 
     public function initialize()
     {
         parent::initialize();
         $this->setSource('activities');
+
+        $this->belongsTo(
+            'activity_type_id',
+            ActivitiesTypes::class,
+            'id',
+            [
+                'alias' => 'type'
+            ]
+        );
 
         $this->addBehavior(
             new Uuid()
