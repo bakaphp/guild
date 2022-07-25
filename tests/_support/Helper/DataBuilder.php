@@ -177,6 +177,6 @@ class DataBuilder
      */
     public function createActivitiesStatus() : ActivitiesStatus
     {
-        return DataBuilder::createActivitiesStatus();
+        return DataBuilderActivities::createActivitiesStatus();
     }
 }
