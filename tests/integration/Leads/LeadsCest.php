@@ -98,7 +98,7 @@ class LeadsCest extends BaseIntegration
         $I->assertEquals($lead->getId(), $newLead->getId());
     }
 
-        /**
+    /**
      * Test get all leads
      *
      * @param IntegrationTester $I
@@ -126,6 +126,4 @@ class LeadsCest extends BaseIntegration
 
         $I->assertEquals($type->getId(), $newType->getId());
     }
-
-    // public function generateData()
 }
