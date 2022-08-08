@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Kanvas\Guild\Activities;
 
 use Baka\Contracts\Database\ModelInterface;
-use Cake\Datasource\ResultSetInterface;
 use Kanvas\Guild\Activities\Models\Activities as ModelsActivities;
 use Kanvas\Guild\Activities\Models\ActivitiesStatus;
 use Kanvas\Guild\Contracts\UserInterface;
 use Kanvas\Guild\Activities\Models\ActivitiesTypes;
 use Kanvas\Guild\Contracts\LeadsInterface;
 use Kanvas\Guild\Traits\Searchable as SearchableTrait;
+use Phalcon\Mvc\Model\ResultsetInterface;
 
 class Activities
 {
@@ -102,54 +102,13 @@ class Activities
         return $newType;
     }
 
-    /**
-     * Create a new activities status.
-     *
-     * @param UserInterface $user
-     * @param string $name
-     * @return ActivitiesStatus
-     */
-    public static function createStatus(UserInterface $user, string $name, bool $isDefault = false) : ActivitiesStatus
-    {
-        $newStatus = new ActivitiesStatus();
-        $newStatus->name = $name;
-        $newStatus->companies_id = $user->currentCompanyId();
-        $newStatus->is_default = (int) $isDefault;
-        $newStatus->saveOrFail();
 
-        return $newStatus;
-    }
-
-    /**
-     * Get activities by status.
-     *
-     * @param UserInterface $user
-     * @param ActivitiesStatus $status
-     * @return ResultSetInterface
-     */
-    public static function getActivitiesByStatus(UserInterface $user, ActivitiesStatus $status) : ResultSetInterface
+    public static function getByLead(LeadsInterface $lead) : ResultsetInterface
     {
-        return Activities::find([
-            'conditions' => 'companies_id = :companies_id: AND activities_status_id = :status_id: AND is_deleted = 0',
+        return ModelsActivities::find([
+            'conditions' => 'leads_id = :lead_id: AND is_deleted = 0',
             'bind' => [
-                'companies_id' => $user->currentCompanyId(),
-                'status_id' => $status->getId()
-            ]
-        ]);
-    }
-
-    /**
-     * Get default activity status if exist.
-     *
-     * @param UserInterface $user
-     * @return ActivitiesStatus|null
-     */
-    public static function getActivityDefaultStatus(UserInterface $user) : ?ActivitiesStatus
-    {
-        return ActivitiesStatus::findFirst([
-            'conditions' => 'companies_id = :company_id: AND is_default = 1 AND is_deleted = 0',
-            'bind' => [
-                'company_id' => $user->currentCompanyId()
+                'lead_id' => $lead->getId()
             ]
         ]);
     }
