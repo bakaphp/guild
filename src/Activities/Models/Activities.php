@@ -36,6 +36,15 @@ class Activities extends BaseModel
             ]
         );
 
+        $this->belongsTo(
+            'activities_status_id',
+            ActivitiesStatus::class,
+            'id',
+            [
+                'alias' => 'status'
+            ]
+        );
+
         $this->addBehavior(
             new Uuid()
         );
