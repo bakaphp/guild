@@ -10,6 +10,7 @@ use Kanvas\Guild\Activities\Activities;
 use Kanvas\Guild\Activities\Models\Activities as ModelsActivities;
 use Kanvas\Guild\Activities\Models\ActivitiesStatus;
 use Kanvas\Guild\Activities\Models\ActivitiesTypes;
+use Kanvas\Guild\Activities\Status;
 use Kanvas\Guild\Tests\Support\BaseIntegration;
 use Kanvas\Guild\Tests\Support\Models\Users;
 
@@ -90,7 +91,7 @@ class ActivitiesCest extends BaseIntegration
     {
         $name = "Overdue";
 
-        $status = Activities::createStatus(new Users(), $name, true);
+        $status = Status::createStatus(new Users(), $name, true);
 
         $I->assertInstanceOf(ActivitiesStatus::class, $status);
         $I->assertNotNull($status->getId());

@@ -7,6 +7,7 @@ use Kanvas\Guild\Activities\Models\Activities as ModelsActivities;
 use Kanvas\Guild\Activities\Models\ActivitiesTypes;
 use Helper\DataBuilder\Leads as DataBuilderLeads;
 use Kanvas\Guild\Activities\Models\ActivitiesStatus;
+use Kanvas\Guild\Activities\Status;
 use Kanvas\Guild\Tests\Support\Models\Users;
 
 class Activities
@@ -33,7 +34,7 @@ class Activities
     {
         $name = "Pending";
 
-        return ActivitiesMethods::createStatus(new Users(), $name);
+        return Status::createStatus(new Users(), $name);
     }
 
     /**
