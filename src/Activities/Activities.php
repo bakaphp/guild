@@ -103,6 +103,12 @@ class Activities
     }
 
 
+    /**
+     * Get activities by lead.
+     *
+     * @param LeadsInterface $lead
+     * @return ResultsetInterface
+     */
     public static function getByLead(LeadsInterface $lead) : ResultsetInterface
     {
         return ModelsActivities::find([
