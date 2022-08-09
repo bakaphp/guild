@@ -379,17 +379,6 @@ class LeadsDependenciesMigrations extends Phinx\Migration\AbstractMigration
                 'limit' => MysqlAdapter::INT_REGULAR,
                 'after' => 'companies_id',
             ])
-            ->addIndex(['leads_id'], [
-                'name' => 'activities_leads_FK',
-                'unique' => false,
-            ])
-            ->addForeignKey(
-                'leads_id',
-                'leads',
-                'id',
-                ['constraint' => 'activities_leads_FK'],
-                ['delete' => 'NO_ACTION', 'update' => 'NO_ACTION']
-            )
             ->save();
     }
 }
