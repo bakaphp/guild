@@ -11,7 +11,7 @@ class PeoplesContactAddressMigrations extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -28,35 +28,35 @@ class PeoplesContactAddressMigrations extends Phinx\Migration\AbstractMigration
             ->addColumn('address', 'string', [
                 'null' => true,
                 'limit' => 255,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'peoples_id',
             ])
             ->addColumn('address_2', 'string', [
                 'null' => true,
                 'limit' => 255,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'address',
             ])
             ->addColumn('city', 'string', [
                 'null' => true,
                 'limit' => 255,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'address_2',
             ])
             ->addColumn('state', 'string', [
                 'null' => true,
                 'limit' => 255,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'city',
             ])
             ->addColumn('zip', 'string', [
                 'null' => true,
                 'limit' => 50,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'state',
             ])
@@ -102,7 +102,7 @@ class PeoplesContactAddressMigrations extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -117,7 +117,7 @@ class PeoplesContactAddressMigrations extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -139,14 +139,14 @@ class PeoplesContactAddressMigrations extends Phinx\Migration\AbstractMigration
             ->addColumn('name', 'string', [
                 'null' => false,
                 'limit' => 255,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'users_id',
             ])
             ->addColumn('icon', 'string', [
                 'null' => true,
                 'limit' => 255,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'name',
             ])
@@ -170,7 +170,7 @@ class PeoplesContactAddressMigrations extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -192,7 +192,7 @@ class PeoplesContactAddressMigrations extends Phinx\Migration\AbstractMigration
             ->addColumn('value', 'string', [
                 'null' => true,
                 'limit' => 255,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'peoples_id',
             ])

@@ -11,7 +11,7 @@ class LeadsMigrations extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -26,7 +26,7 @@ class LeadsMigrations extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -43,7 +43,7 @@ class LeadsMigrations extends Phinx\Migration\AbstractMigration
             ->changeColumn('phone', 'string', [
                 'null' => true,
                 'limit' => 255,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'users_id',
             ])
@@ -77,7 +77,7 @@ class LeadsMigrations extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -100,14 +100,14 @@ class LeadsMigrations extends Phinx\Migration\AbstractMigration
                 'null' => false,
                 'default' => '',
                 'limit' => 50,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'companies_id',
             ])
             ->addColumn('description', 'text', [
                 'null' => true,
                 'limit' => 65535,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'name',
             ])
@@ -131,7 +131,7 @@ class LeadsMigrations extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -144,7 +144,7 @@ class LeadsMigrations extends Phinx\Migration\AbstractMigration
                 'null' => false,
                 'default' => '',
                 'limit' => 50,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'id',
             ])
@@ -173,7 +173,7 @@ class LeadsMigrations extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -196,14 +196,14 @@ class LeadsMigrations extends Phinx\Migration\AbstractMigration
                 'null' => false,
                 'default' => '',
                 'limit' => 50,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'companies_id',
             ])
             ->addColumn('description', 'text', [
                 'null' => true,
                 'limit' => 65535,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'name',
             ])
