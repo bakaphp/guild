@@ -11,7 +11,7 @@ class PipelinesStageMigration extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -28,7 +28,7 @@ class PipelinesStageMigration extends Phinx\Migration\AbstractMigration
             ->addColumn('name', 'string', [
                 'null' => false,
                 'limit' => 64,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'pipelines_id',
             ])

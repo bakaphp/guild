@@ -11,21 +11,21 @@ class UpdateMigrationsActivities extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
             ->changeColumn('name', 'string', [
                 'null' => false,
                 'limit' => 150,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'companies_id',
             ])
             ->changeColumn('description', 'text', [
                 'null' => true,
                 'limit' => 65535,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'name',
             ])
@@ -35,7 +35,7 @@ class UpdateMigrationsActivities extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])

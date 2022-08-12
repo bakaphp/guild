@@ -11,7 +11,7 @@ class ActivitiesStatusMigration extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -24,7 +24,7 @@ class ActivitiesStatusMigration extends Phinx\Migration\AbstractMigration
                 'null' => false,
                 'default' => '',
                 'limit' => 50,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'id',
             ])
@@ -54,7 +54,7 @@ class ActivitiesStatusMigration extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])

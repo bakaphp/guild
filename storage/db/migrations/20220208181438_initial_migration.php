@@ -11,7 +11,7 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -29,7 +29,7 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
                 'null' => false,
                 'default' => '',
                 'limit' => 50,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'apps_id',
             ])
@@ -108,7 +108,7 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
             ->addColumn('reason_lost', 'text', [
                 'null' => true,
                 'limit' => 65535,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'status',
             ])
@@ -116,14 +116,14 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
                 'null' => false,
                 'default' => '0',
                 'limit' => 255,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'reason_lost',
             ])
             ->addColumn('description', 'text', [
                 'null' => true,
                 'limit' => MysqlAdapter::TEXT_LONG,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'title',
             ])
@@ -153,7 +153,7 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -175,14 +175,14 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
             ->addColumn('name', 'string', [
                 'null' => false,
                 'limit' => 255,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'users_id',
             ])
             ->addColumn('slug', 'string', [
                 'null' => false,
                 'limit' => 255,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'name',
             ])
@@ -206,7 +206,7 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -219,7 +219,7 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
                 'null' => false,
                 'default' => '',
                 'limit' => 36,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'id',
             ])
@@ -236,21 +236,21 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
             ->addColumn('name', 'string', [
                 'null' => false,
                 'limit' => 255,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'users_id',
             ])
             ->addColumn('slug', 'string', [
                 'null' => false,
                 'limit' => 255,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'name',
             ])
             ->addColumn('address', 'text', [
                 'null' => true,
                 'limit' => 65535,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'slug',
             ])
@@ -274,7 +274,7 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -291,7 +291,7 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
             ->addColumn('entity_namespace', 'char', [
                 'null' => false,
                 'limit' => 50,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'companies_id',
             ])
@@ -303,14 +303,14 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
             ->addColumn('name', 'string', [
                 'null' => false,
                 'limit' => 255,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'users_id',
             ])
             ->addColumn('slug', 'string', [
                 'null' => false,
                 'limit' => 255,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'name',
             ])
@@ -345,7 +345,7 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -357,7 +357,7 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
             ->addColumn('uuid', 'string', [
                 'null' => false,
                 'limit' => 36,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'id',
             ])
@@ -374,7 +374,7 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
             ->addColumn('name', 'string', [
                 'null' => false,
                 'limit' => 255,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'users_id',
             ])
@@ -398,7 +398,7 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -426,28 +426,28 @@ class InitialMigration extends Phinx\Migration\AbstractMigration
             ->addColumn('uuid', 'char', [
                 'null' => false,
                 'limit' => 36,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'leads_id',
             ])
             ->addColumn('title', 'string', [
                 'null' => false,
                 'limit' => 64,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'uuid',
             ])
             ->addColumn('slug', 'string', [
                 'null' => false,
                 'limit' => 32,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'title',
             ])
             ->addColumn('description', 'text', [
                 'null' => false,
                 'limit' => MysqlAdapter::TEXT_LONG,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'slug',
             ])

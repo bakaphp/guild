@@ -11,7 +11,7 @@ class LeadsDependenciesMigrations extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -33,35 +33,35 @@ class LeadsDependenciesMigrations extends Phinx\Migration\AbstractMigration
             ->addColumn('request', 'text', [
                 'null' => true,
                 'limit' => MysqlAdapter::TEXT_LONG,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'leads_id',
             ])
             ->addColumn('header', 'text', [
                 'null' => true,
                 'limit' => MysqlAdapter::TEXT_LONG,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'request',
             ])
             ->addColumn('ip', 'string', [
                 'null' => true,
                 'limit' => 45,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'header',
             ])
             ->addColumn('source', 'string', [
                 'null' => true,
                 'limit' => 45,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'ip',
             ])
             ->addColumn('public_key', 'string', [
                 'null' => true,
                 'limit' => 45,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'source',
             ])
@@ -90,7 +90,7 @@ class LeadsDependenciesMigrations extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -113,7 +113,7 @@ class LeadsDependenciesMigrations extends Phinx\Migration\AbstractMigration
                 'null' => false,
                 'default' => '',
                 'limit' => 150,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'companies_id',
             ])
@@ -137,7 +137,7 @@ class LeadsDependenciesMigrations extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -149,7 +149,7 @@ class LeadsDependenciesMigrations extends Phinx\Migration\AbstractMigration
             ->addColumn('uuid', 'string', [
                 'null' => false,
                 'limit' => 36,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'id',
             ])
@@ -196,14 +196,14 @@ class LeadsDependenciesMigrations extends Phinx\Migration\AbstractMigration
             ->addColumn('title', 'string', [
                 'null' => true,
                 'limit' => 255,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'organization_id',
             ])
             ->addColumn('description', 'text', [
                 'null' => true,
                 'limit' => MysqlAdapter::TEXT_LONG,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'title',
             ])
@@ -238,7 +238,7 @@ class LeadsDependenciesMigrations extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -317,7 +317,7 @@ class LeadsDependenciesMigrations extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -339,14 +339,14 @@ class LeadsDependenciesMigrations extends Phinx\Migration\AbstractMigration
             ->addColumn('name', 'string', [
                 'null' => true,
                 'limit' => 150,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'companies_id',
             ])
             ->addColumn('description', 'text', [
                 'null' => false,
                 'limit' => 65535,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'name',
             ])
@@ -370,7 +370,7 @@ class LeadsDependenciesMigrations extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])

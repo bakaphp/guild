@@ -11,7 +11,7 @@ class RotationsMigrations extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -22,7 +22,7 @@ class RotationsMigrations extends Phinx\Migration\AbstractMigration
             ->addColumn('uuid', 'string', [
                 'null' => false,
                 'limit' => 36,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'id',
             ])
@@ -39,7 +39,7 @@ class RotationsMigrations extends Phinx\Migration\AbstractMigration
             ->addColumn('name', 'string', [
                 'null' => false,
                 'limit' => 100,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'companies_branches_id',
             ])
@@ -61,7 +61,7 @@ class RotationsMigrations extends Phinx\Migration\AbstractMigration
             ->addColumn('source_name', 'string', [
                 'null' => false,
                 'limit' => 50,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'rotations_id',
             ])
@@ -103,7 +103,7 @@ class RotationsMigrations extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
@@ -129,7 +129,7 @@ class RotationsMigrations extends Phinx\Migration\AbstractMigration
             ->addColumn('phone', 'string', [
                 'null' => true,
                 'limit' => 255,
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'users_id',
             ])
@@ -174,7 +174,7 @@ class RotationsMigrations extends Phinx\Migration\AbstractMigration
                 'primary_key' => ['id'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_520_nopad_ci',
+                'collation' => 'utf8mb4_unicode_520_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
