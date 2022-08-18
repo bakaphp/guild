@@ -10,7 +10,7 @@ use Kanvas\Guild\BaseModel;
 class ActivitiesStatus extends BaseModel
 {
     public string $name;
-    public int $isDefault;
+    public int $is_default;
 
     public function initialize()
     {
