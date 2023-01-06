@@ -19,6 +19,7 @@ class Activities extends BaseModel
     public ?string $description = null;
     public string $start_date;
     public string $end_date;
+    public ?string $completed_date = null;
     public int $activity_type_id;
     public int $activities_status_id;
 
@@ -51,7 +52,7 @@ class Activities extends BaseModel
     }
 
     /**
-     * Before create
+     * Before create.
      *
      * @return void
      */
@@ -62,7 +63,7 @@ class Activities extends BaseModel
     }
 
     /**
-     * Before save
+     * Before save.
      *
      * @return void
      */

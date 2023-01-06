@@ -7,9 +7,9 @@ namespace Kanvas\Guild\Activities;
 use Baka\Contracts\Database\ModelInterface;
 use Kanvas\Guild\Activities\Models\Activities as ModelsActivities;
 use Kanvas\Guild\Activities\Models\ActivitiesStatus;
-use Kanvas\Guild\Contracts\UserInterface;
 use Kanvas\Guild\Activities\Models\ActivitiesTypes;
 use Kanvas\Guild\Contracts\LeadsInterface;
+use Kanvas\Guild\Contracts\UserInterface;
 use Kanvas\Guild\Traits\Searchable as SearchableTrait;
 use Phalcon\Mvc\Model\ResultsetInterface;
 
@@ -38,7 +38,8 @@ class Activities
      * @param ActivitiesTypes $type
      * @param ActivitiesStatus $status
      * @param string $description
-     * @param integer $appId
+     * @param int $appId
+     *
      * @return ModelsActivities
      */
     public static function create(UserInterface $user, string $title, string $start, string $end, LeadsInterface $lead, ActivitiesTypes $type, ActivitiesStatus $status, string $description, int $appId = 0) : ModelsActivities
@@ -65,6 +66,7 @@ class Activities
      *
      * @param ModelsActivities $activity
      * @param array $data
+     *
      * @return ModelsActivities
      */
     public static function update(ModelsActivities $activity, array $data) : ModelsActivities
@@ -74,6 +76,7 @@ class Activities
             'description',
             'start_date',
             'end_date',
+            'completed_date',
             'is_complete',
         ];
 
@@ -83,11 +86,12 @@ class Activities
     }
 
     /**
-     * Create a new activity type
+     * Create a new activity type.
      *
      * @param UserInterface $user
      * @param string $name
      * @param string $description
+     *
      * @return ActivitiesTypes
      */
     public static function createType(UserInterface $user, string $name, string $description = '', ?int $appId = 0) : ActivitiesTypes
@@ -107,6 +111,7 @@ class Activities
      * Get activities by lead.
      *
      * @param LeadsInterface $lead
+     *
      * @return ResultsetInterface
      */
     public static function getByLead(LeadsInterface $lead) : ResultsetInterface
