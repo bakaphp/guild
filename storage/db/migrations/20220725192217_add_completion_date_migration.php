@@ -1,7 +1,7 @@
 <?php
 
 
-class AddCompletionDate extends Phinx\Migration\AbstractMigration
+class AddCompletionDateMigration extends Phinx\Migration\AbstractMigration
 {
     public function change()
     {
