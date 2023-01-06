@@ -15,7 +15,7 @@ class AddCompletionDateMigration extends Phinx\Migration\AbstractMigration
             'row_format' => 'DYNAMIC',
         ])
             ->addColumn('completed_date', 'datetime', [
-                'null' => false,
+                'null' => true,
                 'after' => 'end_date',
             ])
             ->save();
